@@ -11,23 +11,47 @@ class Shoe(models.Model):
 	tradable = models.IntegerField(default=-1) # tradable flag
 	sellable = models.IntegerField(default=-1) # sellable flag
 	userID = models.IntegerField(default=-1) # userID -> sellers table
+	def __str__(self):
+		return str('Index: ' + str(self.index) + '\n' +
+	        	   'Name: ' + str(self.name) + '\n' +
+	        	   'TypeID: ' + str(self.typeID) + '\n' +
+	        	   'Brand: ' + str(self.brand) + '\n' +
+	        	   'Price: ' + str(self.price) + '\n' +
+	        	   'Tradable: ' + str(self.tradable) + '\n' +
+	        	   'Sellable: ' + str(self.sellable) + '\n' +
+	        	   'userID: ' + str(self.userID) + '\n')
 
 class User(models.Model):
 	index = models.IntegerField(default=-1) # sellerID in 'Shoes' correspond to index number, uniqueID 
 	name = models.CharField(max_length=128) # Name of user
 	rating = models.DecimalField(default=-1.0, max_digits=1, decimal_places=1) # rating of user
-	shoesOwned = ListTextField(base_field=models.IntegerField())
-
+	shoesOwned = models.IntegerField(default=-1) # number of shoes owned
+	def __str__(self):
+		return str('Index: ' + str(self.index) + '\n' +
+	        	   'Name: ' + str(self.name) + '\n' +
+	        	   'Rating: ' + str(self.rating) + '\n' +
+	        	   'ShoesOwned: ' + str(self.shoesOwned) + '\n')
 class Transactions(models.Model):
 	transactionID = models.IntegerField(default=-1) # Transaction ID, uniqueID
-	pub_date = models.DateTimeField('transaction date') # Date of transaction
+	transactionDate = models.DateTimeField('transaction date') # Date of transaction
 	transactionType = models.IntegerField(default=0) # transaction type: sell
 	sellerID = models.IntegerField(default=-1) # sellerID
 	buyerID = models.IntegerField(default=-1) # buyerID
-
+	value = models.IntegerField(default=-1) # value of the trade or selling 
+	def __str__(self):
+		return str('TransactionID: ' + str(self.transactionID) + '\n' +
+	        	   'TransactionDate: ' + str(self.transactionDate) + '\n' +
+	        	   'TransactionType: ' + str(self.transactionType) + '\n' +
+	        	   'SellerID: ' + str(self.sellerID) + '\n' +
+	        	   'BuyerID: ' + str(self.buyerID) + '\n' +
+	        	   'Value: ' + str(self.value) + '\n')
 class Inventory(models.Model):
-	shoeIndex = models.IntegerField(default=-1) # index number
+	shoeIndex = models.IntegerField(default=-1) # index number of shoe that corresponds to shoe Table
 	quantity = models.IntegerField(default=-1)
-
+	owner = models.IntegerField(default=-1) # userID -> sellers table
+	def __str__(self):
+		return str('ShoeIndex: ' + str(self.shoeIndex) + '\n' +
+	        	   'Quantity: ' + str(self.quantity) + '\n' +
+	        	   'Owner: ' + str(self.owner) + '\n')
 
 
