@@ -8,6 +8,6 @@ from helloworld.views import CreateInventoryView
 
 urlpatterns = [
 	path('', views.index, name='index'),
-	url(r'^inventory/$', CreateInventoryView.as_view(), name="create"),
+	url(r'^api/v1/inventory/', CreateInventoryView.as_view(), name="create"),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
