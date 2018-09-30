@@ -1,3 +1,4 @@
+# mmk2nh_cs4501/urls.py
 """mmk2nh_cs4501 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,14 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import include
+from django.conf.urls import url, include
+from helloworld import views
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
-    path('helloworld/', include('helloworld.urls')),
-    path('', RedirectView.as_view(url='/helloworld/')),
+    url(r'^', include('helloworld.urls'))
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

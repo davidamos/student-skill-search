@@ -1,16 +1,13 @@
 # helloworld/urls.py 
-from django.urls import path
 from django.conf.urls import url, include
+from django.urls import path
+from rest_framework.urlpatterns import format_suffix_patterns
 from helloworld import views
-from django.contrib import admin
-from rest_framework import routers
+from helloworld.views import CreateInventoryView
 
-router = routers.DefaultRouter()
-router.register(r'inventory', views.InventoryViewSet)
 
 urlpatterns = [
 	path('', views.index, name='index'),
-	path('admin/', admin.site.urls),
-	url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+	url(r'^inventory/$', CreateInventoryView.as_view(), name="create"),
 ]
+urlpatterns = format_suffix_patterns(urlpatterns)
