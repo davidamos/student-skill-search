@@ -3,7 +3,7 @@ models:
   external_links:
     - mysql:db
   volumes:
-    - ./cs4501team15:/app
+    - ./app:/app
   ports:
-    - "8000:8000"
-  command: bash -c "pip install djangorestframework && mod_wsgi-express start-server --working-directory ./cs4501team15 --reload-on-changes ./cs4501team15/app/mmk2nh_cs4501/mmk2nh_cs4501/wsgi.py"
+    - "8001:8000"
+  command: bash -c "pip install djangorestframework && pip install django_mysql && python /app/mmk2nh_cs4501/manage.py makemigrations && python /app/mmk2nh_cs4501/manage.py migrate && mod_wsgi-express start-server --reload-on-changes --working-directory /app/mmk2nh_cs4501 /app/mmk2nh_cs4501/mmk2nh_cs4501/wsgi.py"
