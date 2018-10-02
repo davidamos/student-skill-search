@@ -12,7 +12,7 @@ class ShoeSerializer(serializers.ModelSerializer):
 		model = Shoe
 		fields = ('index', 'name', 'typeID', 'brand', 'price', 'tradable', 'sellable', 'userID')
 
-class TransactionSerializer(serializers.ModelSerializer):
+class TransactionsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Transactions
 		fields = ('transactionID', 'transactionDate', 'transactionType', 'sellerID', 'buyerID', 'value')

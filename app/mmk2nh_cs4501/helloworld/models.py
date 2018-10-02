@@ -1,12 +1,12 @@
 from django.db import models
-
+from decimal import Decimal
 # Create your models here.
 class Shoe(models.Model):
 	index = models.IntegerField(default=-1) # index number, uniqueID
 	name = models.CharField(max_length=128) # Name of shoe
 	typeID = models.IntegerField(default=-1) # shoe type ID
 	brand = models.CharField(max_length=128) # Name of brand
-	price = models.DecimalField(default=-1.0, decimal_places=2, max_digits=10)
+	price = models.DecimalField(default=Decimal('-1.0'), decimal_places=2, max_digits=10)
 	tradable = models.IntegerField(default=-1) # tradable flag
 	sellable = models.IntegerField(default=-1) # sellable flag
 	userID = models.IntegerField(default=-1) # userID -> sellers table
@@ -22,17 +22,17 @@ class Shoe(models.Model):
 
 class User(models.Model):
 	userID = models.IntegerField(default=-1) # sellerID in 'Shoes' correspond to index number, uniqueID 
-	name = models.CharField(max_length=128) # Name of user
-	rating = models.DecimalField(default=-1.0, max_digits=1, decimal_places=1) # rating of user
+	name = models.CharField(default='', max_length=128) # Name of user
+	rating = models.DecimalField(default=Decimal('-1.0'), max_digits=1, decimal_places=1) # rating of user
 	shoesOwned = models.IntegerField(default=-1) # number of shoes owned
 	def __str__(self):
-		return str('Index: ' + str(self.userID) + '\n' +
+		return str('UserID: ' + str(self.userID) + '\n' +
 	        	   'Name: ' + str(self.name) + '\n' +
 	        	   'Rating: ' + str(self.rating) + '\n' +
 	        	   'ShoesOwned: ' + str(self.shoesOwned) + '\n')
 class Transactions(models.Model):
 	transactionID = models.IntegerField(default=-1) # Transaction ID, uniqueID
-	transactionDate = models.DateTimeField('transaction date') # Date of transaction
+	transactionDate = models.DateTimeField('transaction date', auto_now_add=True) # Date of transaction
 	transactionType = models.IntegerField(default=0) # transaction type: sell
 	sellerID = models.IntegerField(default=-1) # sellerID
 	buyerID = models.IntegerField(default=-1) # buyerID
