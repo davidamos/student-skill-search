@@ -21,12 +21,12 @@ class Shoe(models.Model):
 	        	   'userID: ' + str(self.userID) + '\n')
 
 class User(models.Model):
-	index = models.IntegerField(default=-1) # sellerID in 'Shoes' correspond to index number, uniqueID 
+	userID = models.IntegerField(default=-1) # sellerID in 'Shoes' correspond to index number, uniqueID 
 	name = models.CharField(max_length=128) # Name of user
 	rating = models.DecimalField(default=-1.0, max_digits=1, decimal_places=1) # rating of user
 	shoesOwned = models.IntegerField(default=-1) # number of shoes owned
 	def __str__(self):
-		return str('Index: ' + str(self.index) + '\n' +
+		return str('Index: ' + str(self.userID) + '\n' +
 	        	   'Name: ' + str(self.name) + '\n' +
 	        	   'Rating: ' + str(self.rating) + '\n' +
 	        	   'ShoesOwned: ' + str(self.shoesOwned) + '\n')
