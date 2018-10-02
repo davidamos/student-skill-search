@@ -1,12 +1,16 @@
-# Create your views here.
 # helloworld/views.py
-
+from __future__ import unicode_literals
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.forms import ModelForm
 from helloworld.models import Shoe, User, Transactions, Inventory
 from helloworld.serializers import ShoeSerializer, UserSerializer, TransactionsSerializer, InventorySerializer
 from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
+# Create your views here.
 
 def index(request):
 	return HttpResponse('Hello, World!')
