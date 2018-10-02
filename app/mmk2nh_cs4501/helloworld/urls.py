@@ -9,10 +9,10 @@ from helloworld.views import UserDetailsView, ShoeDetailsView, TransactionsDetai
 
 urlpatterns = [
 	path('', views.index, name='index'),
-	url(r'^api/v1/inventory$', CreateInventoryView.as_view()), 
-	url(r'^api/v1/user$', CreateUserView.as_view()), 
-	url(r'^api/v1/shoe$', CreateShoeView.as_view()), 
-	url(r'^api/v1/transactions$', CreateTransactionsView.as_view()), 
+	url(r'^api/v1/inventory', CreateInventoryView.as_view()), 
+	url(r'^api/v1/user', CreateUserView.as_view()), 
+	url(r'^api/v1/shoe', CreateShoeView.as_view()), 
+	url(r'^api/v1/transactions', CreateTransactionsView.as_view()), 
 	url(r'^api/v1/inventory/(?P<pk>[0-9]+)/', InventoryDetailsView.as_view()),
 	url(r'^api/v1/user/(?P<pk>[0-9]+)/', UserDetailsView.as_view()),
 	url(r'^api/v1/shoe/(?P<pk>[0-9]+)/', ShoeDetailsView.as_view()),
