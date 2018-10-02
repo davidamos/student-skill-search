@@ -3,6 +3,7 @@
     "model": "helloworld.shoe",
     "pk": 1,
     "fields": {
+        "shoeID": 10,
         "name": "Air Jordan",
         "typeID": 1,
         "brand": "Nike",
@@ -16,6 +17,7 @@
     "model": "helloworld.shoe",
     "pk": 33,
     "fields": {
+        "shoeID": 14,
         "name": "Free Runs",
         "typeID": 1,
         "brand": "Nike",
@@ -29,6 +31,7 @@
     "model": "helloworld.user",
     "pk": 1,
     "fields": {
+        "userID": 4,
         "name": "John Lennon",
         "rating": "0.1",
         "shoesOwned": 10
@@ -38,6 +41,7 @@
     "model": "helloworld.user",
     "pk": 6,
     "fields": {
+        "userID": 9,
         "name": "John",
         "rating": "0.1",
         "shoesOwned": 4
@@ -47,6 +51,7 @@
     "model": "helloworld.transactions",
     "pk": 5,
     "fields": {
+        "transactionID": 3,
         "transactionDate": "2018-10-02T22:34:04.532Z",
         "transactionType": 1,
         "sellerID": 6,
@@ -58,6 +63,7 @@
     "model": "helloworld.transactions",
     "pk": 8,
     "fields": {
+        "transactionID": 8,
         "transactionDate": "2018-10-02T22:34:54.507Z",
         "transactionType": 1,
         "sellerID": 10,
@@ -69,6 +75,7 @@
     "model": "helloworld.inventory",
     "pk": 7,
     "fields": {
+        "shoeIndex": 12,
         "quantity": 10,
         "owner": 13
     }
@@ -77,6 +84,7 @@
     "model": "helloworld.inventory",
     "pk": 40,
     "fields": {
+        "shoeIndex": 14,
         "quantity": 40,
         "owner": 40
     }
