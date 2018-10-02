@@ -1,0 +1,84 @@
+[
+{
+    "model": "helloworld.shoe",
+    "pk": 1,
+    "fields": {
+        "name": "Air Jordan",
+        "typeID": 1,
+        "brand": "Nike",
+        "price": "100.00",
+        "tradable": 1,
+        "sellable": 1,
+        "userID": 1
+    }
+},
+{
+    "model": "helloworld.shoe",
+    "pk": 33,
+    "fields": {
+        "name": "Free Runs",
+        "typeID": 1,
+        "brand": "Nike",
+        "price": "80.00",
+        "tradable": 1,
+        "sellable": 1,
+        "userID": 12
+    }
+},
+{
+    "model": "helloworld.user",
+    "pk": 1,
+    "fields": {
+        "name": "John Lennon",
+        "rating": "0.1",
+        "shoesOwned": 10
+    }
+},
+{
+    "model": "helloworld.user",
+    "pk": 6,
+    "fields": {
+        "name": "John",
+        "rating": "0.1",
+        "shoesOwned": 4
+    }
+},
+{
+    "model": "helloworld.transactions",
+    "pk": 5,
+    "fields": {
+        "transactionDate": "2018-10-02T22:34:04.532Z",
+        "transactionType": 1,
+        "sellerID": 6,
+        "buyerID": 9,
+        "value": 50
+    }
+},
+{
+    "model": "helloworld.transactions",
+    "pk": 8,
+    "fields": {
+        "transactionDate": "2018-10-02T22:34:54.507Z",
+        "transactionType": 1,
+        "sellerID": 10,
+        "buyerID": 7,
+        "value": 50
+    }
+},
+{
+    "model": "helloworld.inventory",
+    "pk": 7,
+    "fields": {
+        "quantity": 10,
+        "owner": 13
+    }
+},
+{
+    "model": "helloworld.inventory",
+    "pk": 40,
+    "fields": {
+        "quantity": 40,
+        "owner": 40
+    }
+}
+]
