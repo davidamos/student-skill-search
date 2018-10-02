@@ -5,19 +5,19 @@ from rest_framework import serializers
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
-		fields = ('userID', 'name', 'rating', 'shoesOwned')
+		fields = ('id', 'name', 'rating', 'shoesOwned')
 
 class ShoeSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Shoe
-		fields = ('index', 'name', 'typeID', 'brand', 'price', 'tradable', 'sellable', 'userID')
+		fields = ('id', 'name', 'typeID', 'brand', 'price', 'tradable', 'sellable', 'userID')
 
 class TransactionsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Transactions
-		fields = ('transactionID', 'transactionDate', 'transactionType', 'sellerID', 'buyerID', 'value')
+		fields = ('id', 'transactionDate', 'transactionType', 'sellerID', 'buyerID', 'value')
 
 class InventorySerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Inventory
-		fields = ('shoeIndex', 'quantity', 'owner')
+		fields = ('id', 'quantity', 'owner')

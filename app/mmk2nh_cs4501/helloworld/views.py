@@ -11,6 +11,21 @@ from rest_framework import generics
 def index(request):
 	return HttpResponse('Hello, World!')
 
+class CreateInventoryView(generics.ListCreateAPIView):
+	"""
+	API endpoint that allows Inventory to be viewed or edited.
+	"""
+	queryset = Inventory.objects.all()
+	serializer_class = InventorySerializer
+	def perform_create(self, serializer):
+		"""Save the post data when creating a new bucketlist."""
+		serializer.save()
+
+class InventoryDetailsView(generics.RetrieveUpdateDestroyAPIView):
+	"""This class handles the http GET, PUT and DELETE requests."""
+	queryset = Inventory.objects.all()
+	serializer_class = InventorySerializer
+
 class CreateUserView(generics.ListCreateAPIView):
 	"""
 	API endpoint that allows Users to be viewed or edited.
@@ -55,18 +70,3 @@ class TransactionsDetailsView(generics.RetrieveUpdateDestroyAPIView):
 	"""This class handles the http GET, PUT and DELETE requests."""
 	queryset = Transactions.objects.all()
 	serializer_class = TransactionsSerializer
-
-class CreateInventoryView(generics.ListCreateAPIView):
-	"""
-	API endpoint that allows Inventory to be viewed or edited.
-	"""
-	queryset = Inventory.objects.all()
-	serializer_class = InventorySerializer
-	def perform_create(self, serializer):
-		"""Save the post data when creating a new bucketlist."""
-		serializer.save()
-
-class InventoryDetailsView(generics.RetrieveUpdateDestroyAPIView):
-	"""This class handles the http GET, PUT and DELETE requests."""
-	queryset = Inventory.objects.all()
-	serializer_class = InventorySerializer
