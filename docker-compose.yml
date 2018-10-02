@@ -6,4 +6,4 @@ models:
     - ./app:/app
   ports:
     - "8001:8000"
-  command: bash -c "pip install djangorestframework && pip install django_mysql && python /app/mmk2nh_cs4501/manage.py makemigrations helloworld && python /app/mmk2nh_cs4501/manage.py migrate helloworld && mod_wsgi-express start-server --reload-on-changes --working-directory /app/mmk2nh_cs4501 /app/mmk2nh_cs4501/mmk2nh_cs4501/wsgi.py"
+  command: bash -c "pip install djangorestframework && pip install django_mysql && python /app/mmk2nh_cs4501/manage.py makemigrations helloworld && python /app/mmk2nh_cs4501/manage.py migrate helloworld && mod_wsgi-express start-server --reload-on-changes --working-directory /app/mmk2nh_cs4501 /app/mmk2nh_cs4501/mmk2nh_cs4501/wsgi.py && python manage.py loaddata --indent=4 -e sessions -e admin -e contenttypes -e auth.Permission db.json"
