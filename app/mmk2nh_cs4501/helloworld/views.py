@@ -1,76 +1,180 @@
 # helloworld/views.py
 from __future__ import unicode_literals
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import ModelForm
+from django.forms.models import model_to_dict
 from helloworld.models import Shoe, User, Transactions, Inventory
 from helloworld.serializers import ShoeSerializer, UserSerializer, TransactionsSerializer, InventorySerializer
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from django.core import serializers
+import time, os
 
 # Create your views here.
+def _error_response(request, error_msg, error_specific=None):
+   if error_specific:
+     return JsonResponse({'ok': False, 'error': error_msg, 'error_info': error_specific})
+   else:
+     return JsonResponse({'ok': False, 'error': error_msg})
+
+def _success_response(request, resp=None):
+  if resp:
+    return JsonResponse({'ok': True, 'resp': resp})
+  else:
+   return JsonResponse({'ok': True})     
+
 
 def index(request):
 	return HttpResponse('Hello, World!')
 
-class CreateInventoryView(generics.ListCreateAPIView):
-	"""
-	API endpoint that allows Inventory to be viewed or edited.
-	"""
-	queryset = Inventory.objects.all()
-	serializer_class = InventorySerializer
-	def perform_create(self, serializer):
-		"""Save the post data when creating a new bucketlist."""
-		serializer.save()
+#
+#	INVENTORY
+#
 
-class InventoryDetailsView(generics.RetrieveUpdateDestroyAPIView):
-	"""This class handles the http GET, PUT and DELETE requests."""
-	queryset = Inventory.objects.all()
-	serializer_class = InventorySerializer
+def inventory_views_all(request):
+	i = Inventory.objects.all()
+	return JsonResponse(serializers.serialize('json', i), safe=False)
 
-class CreateUserView(generics.ListCreateAPIView):
-	"""
-	API endpoint that allows Users to be viewed or edited.
-	"""
-	queryset = User.objects.all()
-	serializer_class = UserSerializer
-	def perform_create(self, serializer):
-		"""Save the post data when creating a new bucketlist."""
-		serializer.save()
+def inventory_views_create(request):
+	if request.method != 'POST':
+		return _error_response(request, "Registration must make POST request.")
+	inventory = request.POST.dict()
+	i = Inventory.objects.create(shoeID=inventory['shoeIndex'], quantity=inventory['quantity'], 
+								 owner=inventory['owner'])
+	i.save()
+	return _success_response(request, {'shoeIndex': i.shoeIndex, 'quantity': i.quantity, 'owner':i.owner})
 
-class UserDetailsView(generics.RetrieveUpdateDestroyAPIView):
-	"""This class handles the http GET, PUT and DELETE requests."""
-	queryset = User.objects.all()
-	serializer_class = UserSerializer
+def inventory_views_read(request, pk):
+	inventory = Inventory.objects.get(id=pk)
+	return JsonResponse(model_to_dict(inventory))
 
-class CreateShoeView(generics.ListCreateAPIView):
-	"""
-	API endpoint that allows Shoes to be viewed or edited.
-	"""
-	queryset = Shoe.objects.all()
-	serializer_class = ShoeSerializer
-	def perform_create(self, serializer):
-		"""Save the post data when creating a new bucketlist."""
-		serializer.save()
+def inventory_views_update(request, pk):
+	i = Inventory.objects.get(id=pk)
+	context = {}
+	if request.method == 'POST':
+		return HttpResponse(json.dumps(context), content_type="application/json")
+	else:
+		return JsonResponse(serializers.serialize('json', i), safe=False)
 
-class ShoeDetailsView(generics.RetrieveUpdateDestroyAPIView):
-	"""This class handles the http GET, PUT and DELETE requests."""
-	queryset = Shoe.objects.all()
-	serializer_class = ShoeSerializer
+def inventory_views_delete(request, pk):
+	inventory = Inventory.objects.get(id=pk).delete()
+	return HttpResponseRedirect('')
 
-class CreateTransactionsView(generics.ListCreateAPIView):
-	"""
-	API endpoint that allows Transactions to be viewed or edited.
-	"""
-	queryset = Transactions.objects.all()
-	serializer_class = TransactionsSerializer
-	def perform_create(self, serializer):
-		"""Save the post data when creating a new bucketlist."""
-		serializer.save()
+#
+#	SHOE
+#
 
-class TransactionsDetailsView(generics.RetrieveUpdateDestroyAPIView):
-	"""This class handles the http GET, PUT and DELETE requests."""
-	queryset = Transactions.objects.all()
-	serializer_class = TransactionsSerializer
+def shoe_views_all(request):
+	s = Shoe.objects.all()
+	return JsonResponse(serializers.serialize('json', s), safe=False)
+
+def shoe_views_create(request):
+	if request.method != 'POST':
+		return _error_response(request, "Registration must make POST request.")
+	shoe = request.POST.dict()
+	s = Shoe.objects.create(shoeID=shoe['shoeID'], name=shoe['name'], typeID=shoe['typeID'], 
+						    brand=shoe['brand'], price=shoe['price'], tradable=shoe['tradable'],
+						    sellable=shoe['sellable'], userID=shoe['userID'])
+	s.save()
+	return _success_response(request, {'shoeID': s.shoeID, 'name': s.name, 'typeID': s.typeID, 
+									   'brand': s.brand, 'price': s.price, 'tradable': s.tradable,
+									   'sellable': s.sellable, 'userID': s.userID})
+
+def shoe_views_read(request, pk):
+	shoe = Shoe.objects.get(id=pk)
+	return JsonResponse(model_to_dict(shoe))
+
+def shoe_views_update(request, pk):
+	s = Shoe.objects.get(id=pk)
+	context = {}
+	if request.method == 'POST':
+		return HttpResponse(json.dumps(context), content_type="application/json")
+	else:
+		return JsonResponse(serializers.serialize('json', s), safe=False)
+
+def shoe_views_delete(request, pk):
+	shoe = Shoe.objects.get(id=pk).delete()
+	return HttpResponseRedirect('')
+
+#
+#	Transactions
+#
+
+def transactions_views_all(request):
+	t = Transactions.objects.all()
+	return JsonResponse(serializers.serialize('json', t), safe=False)
+
+def transactions_views_create(request):
+	if request.method != 'POST':
+		return _error_response(request, "Registration must make POST request.")
+	tran = request.POST.dict()
+	t = Transactions.objects.create(transactionID=tran['transactionID'], 
+									transactionDate=tran['transactionDate'], 
+									transactionType=tran['transactionType'], 
+						    		sellerID=tran['sellerID'], buyerID=tran['buyerID'], 
+						    		value=tran['value'])
+	t.save()
+	return _success_response(request, {'transactionID': t.transactionID, 
+									   'transactionDate': t.transactionDate, 
+									   'transactionType': t.transactionType, 
+									   'sellerID': t.sellerID, 'buyerID': t.buyerID, 
+									   'value': t.value})
+
+def transactions_views_read(request, pk):
+	tran = Transactions.objects.get(id=pk)
+	return JsonResponse(model_to_dict(tran))
+
+def transactions_views_update(request, pk):
+	t = Transactions.objects.get(id=pk)
+	context = {}
+	if request.method == 'POST':
+		return HttpResponse(json.dumps(context), content_type="application/json")
+	else:
+		return JsonResponse(serializers.serialize('json', t), safe=False)
+
+def transactions_views_delete(request, pk):
+	t = Transactions.objects.get(id=pk).delete()
+	return HttpResponseRedirect('')
+
+#
+#	Users
+#
+
+def user_views_all(request):
+	u = User.objects.all()
+	return JsonResponse(serializers.serialize('json', u), safe=False)
+
+def user_views_create(request):
+	if request.method != 'POST':
+		return _error_response(request, "Registration must make POST request.")
+	user = request.POST.dict()
+	u = User.objects.create(userID=user['userID'], 
+							name=user['name'], 
+							rating=user['rating'], 
+						    shoesOwned=user['shoesOwned'])
+	u.save()
+	return _success_response(request, {'userID': u.userID, 
+									   'name': u.name, 
+									   'rating': u.rating, 
+									   'shoesOwned': u.shoesOwned})
+
+def user_views_read(request, pk):
+	user = User.objects.get(id=pk)
+	return JsonResponse(model_to_dict(user))
+
+def user_views_update(request, pk):
+	u = User.objects.get(id=pk)
+	context = {}
+	if request.method == 'POST':
+		return HttpResponse(json.dumps(context), content_type="application/json")
+	else:
+		return JsonResponse(serializers.serialize('json', u), safe=False)
+
+def user_views_delete(request, pk):
+	u = User.objects.get(id=pk).delete()
+	return HttpResponseRedirect('')
+
+

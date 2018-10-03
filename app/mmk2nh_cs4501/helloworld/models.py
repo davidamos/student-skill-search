@@ -20,9 +20,6 @@ class Shoe(models.Model):
 				   'Sellable: ' + str(self.sellable) + '\n' +
 				   'userID: ' + str(self.userID) + '\n')
 
-	def get_post_url(self):
-		return reverse('post_edit', kwargs={'pk': self.pk})
-
 class User(models.Model):
 	userID = models.IntegerField(default=-1) # sellerID in 'Shoes' correspond to index number, uniqueID 
 	name = models.CharField(default='', max_length=128) # Name of user
@@ -33,9 +30,6 @@ class User(models.Model):
 				   'Name: ' + str(self.name) + '\n' +
 				   'Rating: ' + str(self.rating) + '\n' +
 				   'ShoesOwned: ' + str(self.shoesOwned) + '\n')
-
-	def get_post_url(self):
-		return reverse('post_edit', kwargs={'pk': self.pk})
 
 class Transactions(models.Model):
 	transactionID = models.IntegerField(default=-1) # Transaction ID, uniqueID
@@ -51,8 +45,6 @@ class Transactions(models.Model):
 				   'SellerID: ' + str(self.sellerID) + '\n' +
 				   'BuyerID: ' + str(self.buyerID) + '\n' +
 				   'Value: ' + str(self.value) + '\n')
-	def get_post_url(self):
-		return reverse('post_edit', kwargs={'pk': self.pk})
 
 class Inventory(models.Model):
 	shoeIndex = models.IntegerField(default=-1) # index number of shoe that corresponds to shoe Table
@@ -63,6 +55,4 @@ class Inventory(models.Model):
 				   'Quantity: ' + str(self.quantity) + '\n' +
 				   'Owner: ' + str(self.owner) + '\n')
 
-	def get_post_url(self):
-		return reverse('post_edit', kwargs={'pk': self.pk})
 
