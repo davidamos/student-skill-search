@@ -15,25 +15,17 @@ import os
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
-def _error_response(self, msg, error_message):
-		return {
-			'type': utils.ERROR_RESPONSE_TYPE,
-			'response': {
-				'uuid': msg.get('uuid'),
-				'action': msg.get('action'),
-				'error_message': str(error_message),
-				'status': 'error',
-			}
-		}
+def _error_response(request, error_msg, error_specific=None):
+	if error_specific:
+		return JsonResponse({'ok': False, 'error': error_msg, 'error_info': error_specific})
+	else:
+		return JsonResponse({'ok': False, 'error': error_msg})
 
-def _success_response(self, msg, response=None, send_to=None, session_data=None):
-		if response is None:
-			response = {}
-		response.update({
-			'uuid': msg.get('uuid'),
-			'action': msg.get('action'),
-			'status': 'success',
-		}) 
+def _success_response(request, resp=None):
+	if resp:
+		return JsonResponse({'ok': True, 'resp': resp})
+	else:
+		return JsonResponse({'ok': True})
 
 @csrf_exempt
 def index(request):
