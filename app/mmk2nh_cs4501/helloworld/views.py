@@ -29,7 +29,7 @@ def _success_response(request, resp=None):
 
 @csrf_exempt
 def index(request):
-	return HttpResponse('Hello, World!')
+	return render(request, 'home.html')
 
 #
 #	INVENTORY
@@ -43,7 +43,7 @@ def inventory_views_create(request):
 	if request.method != 'POST':
 		return _error_response(request, "Registration must make POST request.")
 	inventory = request.POST.dict()
-	i = Inventory.objects.create(shoeIndex=inventory['shoeIndex'], quantity=inventory['quantity'], 
+	i = Inventory.objects.create(shoeIndex=inventory['shoeIndex'], quantity=inventory['quantity'],
 								 owner=inventory['owner'])
 	i.save()
 	return _success_response(request, {'shoeIndex': i.shoeIndex, 'quantity': i.quantity, 'owner':i.owner})
@@ -76,11 +76,11 @@ def shoe_views_create(request):
 	if request.method != 'POST':
 		return _error_response(request, "Registration must make POST request.")
 	shoe = request.POST.dict()
-	s = Shoe.objects.create(shoeID=shoe['shoeID'], name=shoe['name'], typeID=shoe['typeID'], 
+	s = Shoe.objects.create(shoeID=shoe['shoeID'], name=shoe['name'], typeID=shoe['typeID'],
 							brand=shoe['brand'], price=shoe['price'], tradable=shoe['tradable'],
 							sellable=shoe['sellable'], userID=shoe['userID'])
 	s.save()
-	return _success_response(request, {'shoeID': s.shoeID, 'name': s.name, 'typeID': s.typeID, 
+	return _success_response(request, {'shoeID': s.shoeID, 'name': s.name, 'typeID': s.typeID,
 									   'brand': s.brand, 'price': s.price, 'tradable': s.tradable,
 									   'sellable': s.sellable, 'userID': s.userID})
 @csrf_exempt
@@ -112,16 +112,16 @@ def transactions_views_create(request):
 	if request.method != 'POST':
 		return _error_response(request, "Registration must make POST request.")
 	tran = request.POST.dict()
-	t = Transactions.objects.create(transactionID=tran['transactionID'], 
-									transactionDate=tran['transactionDate'], 
-									transactionType=tran['transactionType'], 
-									sellerID=tran['sellerID'], buyerID=tran['buyerID'], 
+	t = Transactions.objects.create(transactionID=tran['transactionID'],
+									transactionDate=tran['transactionDate'],
+									transactionType=tran['transactionType'],
+									sellerID=tran['sellerID'], buyerID=tran['buyerID'],
 									value=tran['value'])
 	t.save()
-	return _success_response(request, {'transactionID': t.transactionID, 
-									   'transactionDate': t.transactionDate, 
-									   'transactionType': t.transactionType, 
-									   'sellerID': t.sellerID, 'buyerID': t.buyerID, 
+	return _success_response(request, {'transactionID': t.transactionID,
+									   'transactionDate': t.transactionDate,
+									   'transactionType': t.transactionType,
+									   'sellerID': t.sellerID, 'buyerID': t.buyerID,
 									   'value': t.value})
 @csrf_exempt
 def transactions_views_read(request, pk):
@@ -152,14 +152,14 @@ def user_views_create(request):
 	if request.method != 'POST':
 		return _error_response(request, "Registration must make POST request.")
 	user = request.POST.dict()
-	u = User.objects.create(userID=user['userID'], 
-							name=user['name'], 
-							rating=user['rating'], 
+	u = User.objects.create(userID=user['userID'],
+							name=user['name'],
+							rating=user['rating'],
 							shoesOwned=user['shoesOwned'])
 	u.save()
-	return _success_response(request, {'userID': u.userID, 
-									   'name': u.name, 
-									   'rating': u.rating, 
+	return _success_response(request, {'userID': u.userID,
+									   'name': u.name,
+									   'rating': u.rating,
 									   'shoesOwned': u.shoesOwned})
 @csrf_exempt
 def user_views_read(request, pk):
@@ -177,5 +177,3 @@ def user_views_update(request, pk):
 def user_views_delete(request, pk):
 	u = User.objects.get(id=pk).delete()
 	return HttpResponseRedirect('')
-
-
