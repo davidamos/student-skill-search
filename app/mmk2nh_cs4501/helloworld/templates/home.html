@@ -1,7 +1,12 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <body>
-    <h1>Welcome to the (insert title of page here) </h1>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="home-title">
+    <h1>(Body of Home Page): Welcome to the (insert title of page here) </h1>
+  </div>
+  <div class="home-description">
+    <p>(This is where we can talk about what this site is in more depth and list all the products that we are offering at the site.)</p>
+    <p>(This is also where we list the links to get to each of our 4 details pages)</p>
+  </div>
+
+{% endblock %}

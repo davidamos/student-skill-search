@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home - Limited/Designer Shoes</title>
+        <link rel="stylesheet" id="ample-style-css" href="{% static 'style.css' %}" type="text/css" media="all">
+    </head>
+    <body class="wide">
+        <div id="page" class="hfeed site">
+            <header>
+                <div class="header">
+                    <div class="main-head-wrap inner-wrap clearfix">
+                        <div id="header-logo-image">
+                            <a href="/">
+                                <img src="{% static 'images/homeLogo.png' %}" alt="Limited Jordans">
+                            </a>
+                        </div>
+                        <div id="header-text" class="">
+                            <h1 id="site-title">
+                                <a href="/" title="Home - Limited/Designer Shoe Marketplace App" rel="home">Limited/Designer Shoe Marketplace App</a>
+                            </h1>
+                            <p>(This is the header for each page) Sell or Buy, Limited/Designer Shoes</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="main-wrapper">
+                <div class="single-page clearfix">
+                    <div class="inner-wrap">
+                        <p>This site is used for buyers who are looking to purchase limited/designer shoes from a safe site.
+                          It can also be used for selling who are looking to put their priceless shoes up so all customers can view it and buy them.</p>
+                        <hr>
+                        <div>
+                        <!-- THIS IS WHERE EACH HTML FILE THAT EXTENDS BASE.HTML BEGINS -->
+                        {% block content %}
+                        {% endblock %}
+                        <!-- THIS IS WHERE EACH HTML FILE THAT EXTENDS BASE.HTML ENDS -->
+                        </div>
+                    </div>
+                </div>
+            <!-- </div>
+            <footer id="colophon">
+                <div class="inner-wrap">
+                    (Footer for each page)
+                </div>
+            </footer> -->
+        </div>
+    <script src = "{% static 'main.js' %}"></script>
+    </body>
+</html>
