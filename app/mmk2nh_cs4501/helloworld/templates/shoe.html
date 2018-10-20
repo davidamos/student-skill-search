@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="shoePage">
+  <div class="shoeTitle">
+    <h1>(Body of Shoe Page) </h1>
+  </div>
+  <div class="shoeDescription">
+    <p>(This is where we can list all the shoes and then have the create, edit, delete function)</p>
+  </div>
+  <div class="shoeDatabase">
+    <div className="shoeTable">
+      <table>
+        <tr> <!-- Table header -->
+          <th>Shoe ID</th>
+          <th>Shoe Name</th>
+          <th>Price ($)</th>
+          <th>Seller ID</th>
+        </tr>
+        {% for shoe in shoes %}
+        <tr>
+          <td>{{shoe.shoeID}} </td>
+          <td>{{shoe.name|capfirst}} </td>
+          <td>{{shoe.price}} </td>
+          <td>{{shoe.userID|capfirst}} </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

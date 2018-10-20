@@ -69,8 +69,9 @@ def inventory_views_delete(request, pk):
 #
 @csrf_exempt
 def shoe_views_all(request):
-	s = Shoe.objects.all()
-	return JsonResponse(serializers.serialize('json', s), safe=False)
+	shoes = Shoe.objects.all()
+	return render(request, 'shoe.html', {'shoes':shoes})
+	# return JsonResponse(serializers.serialize('json', s), safe=False)
 @csrf_exempt
 def shoe_views_create(request):
 	if request.method != 'POST':
