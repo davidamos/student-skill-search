@@ -36,8 +36,9 @@ def index(request):
 #
 @csrf_exempt
 def inventory_views_all(request):
-	i = Inventory.objects.all()
-	return JsonResponse(serializers.serialize('json', i), safe=False)
+	inventory = Inventory.objects.all()
+	return render(request, 'inventory.html', {'inventory':inventory})
+	# return JsonResponse(serializers.serialize('json', i), safe=False)
 @csrf_exempt
 def inventory_views_create(request):
 	if request.method != 'POST':
@@ -106,8 +107,9 @@ def shoe_views_delete(request, pk):
 #
 @csrf_exempt
 def transactions_views_all(request):
-	t = Transactions.objects.all()
-	return JsonResponse(serializers.serialize('json', t), safe=False)
+	transactions = Transactions.objects.all()
+	return render(request, 'transactions.html', {'transactions': transactions})
+	# return JsonResponse(serializers.serialize('json', t), safe=False)
 @csrf_exempt
 def transactions_views_create(request):
 	if request.method != 'POST':
@@ -146,8 +148,9 @@ def transactions_views_delete(request, pk):
 #
 @csrf_exempt
 def user_views_all(request):
-	u = User.objects.all()
-	return JsonResponse(serializers.serialize('json', u), safe=False)
+	users = User.objects.all()
+	return render(request, 'user.html', {'users': users})
+	# return JsonResponse(serializers.serialize('json', u), safe=False)
 @csrf_exempt
 def user_views_create(request):
 	if request.method != 'POST':
