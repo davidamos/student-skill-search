@@ -13,7 +13,7 @@ urlpatterns = [
 	#
 	# URLS FOR INVENTORY
 	#
-	url(r'^api/v1/inventory$', inventory_views_all),
+	url(r'^api/v1/inventory$', inventory_views_all, name="inventoryHomePage"),
 	url(r'^api/v1/inventory/(?P<pk>[0-9]+)$', inventory_views_read),
 	url(r'^api/v1/inventory/create$', inventory_views_create),
 	url(r'^api/v1/inventory/(?P<pk>[0-9]+)/update$', inventory_views_update),
@@ -29,7 +29,7 @@ urlpatterns = [
 	#
 	# URLS FOR TRANSACTIONS
 	#
-	url(r'^api/v1/transactions$', transactions_views_all),
+	url(r'^api/v1/transactions$', transactions_views_all, name="transactionHomePage"),
 	url(r'^api/v1/transactions/(?P<pk>[0-9]+)$', transactions_views_read),
 	url(r'^api/v1/transactions/create$', transactions_views_create),
 	url(r'^api/v1/transactions/(?P<pk>[0-9]+)/update$', transactions_views_update),
@@ -37,7 +37,7 @@ urlpatterns = [
 	#
 	# URLS FOR USER
 	#
-	url(r'^api/v1/user$', user_views_all),
+	url(r'^api/v1/user$', user_views_all, name="userHomePage"),
 	url(r'^api/v1/user/(?P<pk>[0-9]+)$', user_views_read),
 	url(r'^api/v1/user/create$', user_views_create),
 	url(r'^api/v1/user/(?P<pk>[0-9]+)/update$', user_views_update),

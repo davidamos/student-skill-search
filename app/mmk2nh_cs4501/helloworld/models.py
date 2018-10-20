@@ -21,7 +21,7 @@ class Shoe(models.Model):
 				   'userID: ' + str(self.userID) + '\n')
 
 class User(models.Model):
-	userID = models.IntegerField(default=-1) # sellerID in 'Shoes' correspond to index number, uniqueID 
+	userID = models.IntegerField(default=-1) # sellerID in 'Shoes' correspond to index number, uniqueID
 	name = models.CharField(default='', max_length=128) # Name of user
 	rating = models.DecimalField(default=Decimal('-1.0'), max_digits=1, decimal_places=1) # rating of user
 	shoesOwned = models.IntegerField(default=-1) # number of shoes owned
@@ -54,5 +54,3 @@ class Inventory(models.Model):
 		return str('ShoeIndex: ' + str(self.shoeIndex) + '\n' +
 				   'Quantity: ' + str(self.quantity) + '\n' +
 				   'Owner: ' + str(self.owner) + '\n')
-
-
