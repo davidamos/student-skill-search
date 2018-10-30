@@ -17,7 +17,7 @@ exp:
   ports:
     - "8002:8000"
   volumes:
-    - /app/mmk2nh_cs4501/static:/app
+    - /app/mmk2nh_cs4501/static/:/app
   command: "mod_wsgi-express start-server --reload-on-changes stuff-exp/wsgi.py"
 
 web:
