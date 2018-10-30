@@ -17,8 +17,8 @@ exp:
   ports:
     - "8002:8000"
   volumes:
-    - /app/exp:/app
-  command: "mod_wsgi-express start-server --reload-on-changes stuff-exp/wsgi.py"
+    - ./app:/app
+  command: "mod_wsgi-express start-server --reload-on-changes app/mmk2nh_cs4501/exp/wsgi.py"
 
 web:
   image: tp33/django
@@ -28,5 +28,5 @@ web:
   ports:
     - "8000:8000"
   volumes:
-    - /app/web:/app
-  command: "mod_wsgi-express start-server --reload-on-changes stuff-web/wsgi.py"
+    - ./app:/app
+  command: "mod_wsgi-express start-server --reload-on-changes app/mmk2nh_cs4501/web/wsgi.py"
