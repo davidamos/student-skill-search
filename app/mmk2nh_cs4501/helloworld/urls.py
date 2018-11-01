@@ -13,11 +13,11 @@ urlpatterns = [
 	#
 	# AUTH
 	#
-	url(r'^/user/check/$', views.checkUser),
-    url(r'^/user/auth/$', views.getUserByAuth),
-	url(r'^/auth/create/$', views.createAuth),
-    url(r'^/auth/check/$', views.checkAuth),
-    url(r'^/auth/remove/$', views.removeAuth),
+	url(r'^user/check/$', views.checkUser),
+    url(r'^user/auth/$', views.getUserByAuth),
+	url(r'^auth/create/$', views.createAuth),
+    url(r'^auth/check/$', views.checkAuth),
+    url(r'^auth/remove/$', views.removeAuth),
 	#
 	# URLS FOR INVENTORY
 	#

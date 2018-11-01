@@ -22,9 +22,12 @@ class Shoe(models.Model):
 
 class User(models.Model):
 	userID = models.IntegerField(default=-1) # sellerID in 'Shoes' correspond to index number, uniqueID
-	name = models.CharField(default='', max_length=128) # Name of user
 	rating = models.DecimalField(default=Decimal('-1.0'), max_digits=1, decimal_places=1) # rating of user
 	shoesOwned = models.IntegerField(default=-1) # number of shoes owned
+	firstName = models.CharField(max_length=20, default='')
+	lastName = models.CharField(max_length=20, default='')
+	username = models.CharField(max_length=30, default='')
+	password = models.CharField(max_length=128, default='')
 	def __str__(self):
 		return str('UserID: ' + str(self.userID) + '\n' +
 				   'Name: ' + str(self.name) + '\n' +
@@ -55,16 +58,7 @@ class Inventory(models.Model):
 				   'Quantity: ' + str(self.quantity) + '\n' +
 				   'Owner: ' + str(self.owner) + '\n')
 
-class User(models.Model):
-    firstName = models.CharField(max_length=20)
-    lastName = models.CharField(max_length=20)
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=128)
-
-    def __str__(self): 
-        return self.firstName + " " + self.lastName
-
 class Authenticator(models.Model):
-    user_id = models.CharField(max_length=50)
-    authenticator = models.CharField(max_length=255, primary_key=True, unique=True)
-    date_created = models.DateTimeField(auto_now_add=True, blank=True)
+	user_id = models.CharField(max_length=50)
+	authenticator = models.CharField(max_length=255, primary_key=True, unique=True)
+	date_created = models.DateTimeField(auto_now_add=True, blank=True)

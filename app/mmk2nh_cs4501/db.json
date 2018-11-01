@@ -27,26 +27,7 @@
         "userID": 12
     }
 },
-{
-    "model": "helloworld.user",
-    "pk": 1,
-    "fields": {
-        "userID": 4,
-        "name": "John Lennon",
-        "rating": "0.1",
-        "shoesOwned": 10
-    }
-},
-{
-    "model": "helloworld.user",
-    "pk": 6,
-    "fields": {
-        "userID": 9,
-        "name": "John",
-        "rating": "0.1",
-        "shoesOwned": 4
-    }
-},
+
 {
     "model": "helloworld.transactions",
     "pk": 5,
