@@ -10,6 +10,11 @@ from helloworld.views import user_views_all, user_views_create, user_views_read,
 
 urlpatterns = [
 	path('', views.index, name='index'), # HOME PAGE
+
+	url(r'^account/create/$',shoe_views_all, name="accountCreatePage"),
+	url(r'^account/login/$', shoe_views_all, name="accountLoginPage"),
+	url(r'^account/logout/$', shoe_views_all, name="accountLogoutPage"),
+	url(r'^account/listing/$', shoe_views_all, name="accountListingPage"),
 	#
 	# AUTH
 	#

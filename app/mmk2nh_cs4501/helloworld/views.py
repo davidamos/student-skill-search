@@ -33,6 +33,7 @@ def _success_response(request, resp=None):
 def index(request):
 	return render(request, 'home.html')
 
+
 #
 #	INVENTORY
 #
