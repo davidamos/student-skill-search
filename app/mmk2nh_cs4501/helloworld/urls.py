@@ -7,12 +7,13 @@ from helloworld.views import inventory_views_all, inventory_views_create, invent
 from helloworld.views import shoe_views_all, shoe_views_create, shoe_views_read, shoe_views_update, shoe_views_delete
 from helloworld.views import transactions_views_all, transactions_views_create, transactions_views_read, transactions_views_update, transactions_views_delete
 from helloworld.views import user_views_all, user_views_create, user_views_read, user_views_update, user_views_delete
+from helloworld.views import login, signup
 
 urlpatterns = [
 	path('', views.index, name='index'), # HOME PAGE
 
-	url(r'^account/create/$',shoe_views_all, name="accountCreatePage"),
-	url(r'^account/login/$', shoe_views_all, name="accountLoginPage"),
+	url(r'^account/create/$',signup, name="accountCreatePage"),
+	url(r'^account/login/$', login, name="accountLoginPage"),
 	url(r'^account/logout/$', shoe_views_all, name="accountLogoutPage"),
 	url(r'^account/listing/$', shoe_views_all, name="accountListingPage"),
 	#

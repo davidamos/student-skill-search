@@ -7,10 +7,11 @@
   </div>
   {% if user.is_authenticated %}
   Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">logout</a></p>
+  <p><a href="{% url 'accountLogoutPage' %}">Logout</a></p>
 {% else %}
   <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
+  <a href="{% url 'accountLoginPage' %}">Login</a>
+  <a href="{% url 'accountCreatePage' %}">Create Account</a>
 {% endif %}
   <div class="homeDescription col-md-12">
     <p>(This is where we can talk about what this site is in more depth and list all the products that we are offering at the site.)</p>
