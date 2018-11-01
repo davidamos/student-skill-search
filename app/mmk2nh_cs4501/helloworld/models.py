@@ -59,6 +59,6 @@ class Inventory(models.Model):
 				   'Owner: ' + str(self.owner) + '\n')
 
 class Authenticator(models.Model):
-	user_id = models.CharField(max_length=50)
+	userID = models.ForeignKey(User, on_delete = models.CASCADE)
 	authenticator = models.CharField(max_length=255, primary_key=True, unique=True)
 	date_created = models.DateTimeField(auto_now_add=True, blank=True)
