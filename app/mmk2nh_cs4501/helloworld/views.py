@@ -1,18 +1,20 @@
 # helloworld/views.py
 from __future__ import unicode_literals
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+import json, os, hmac, datetime, base64
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect, FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import ModelForm
 from django.forms.models import model_to_dict
+from django.utils import timezone
+from django.conf import settings
+from django.contrib.auth import hashers
+from django.core import serializers
+from django.core.exceptions import ObjectDoesNotExist
+from django.views.decorators.csrf import csrf_exempt
 from helloworld.models import Shoe, User, Transactions, Inventory
 from helloworld.serializers import ShoeSerializer, UserSerializer, TransactionsSerializer, InventorySerializer
-from rest_framework import generics
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework.reverse import reverse
-from django.core import serializers
-import os
-from django.views.decorators.csrf import csrf_exempt
+from .forms import UserForm, UserFormCheckUser
+
 
 # Create your views here.
 def _error_response(request, error_msg, error_specific=None):
@@ -181,3 +183,165 @@ def user_views_update(request, pk):
 def user_views_delete(request, pk):
 	u = User.objects.get(id=pk).delete()
 	return HttpResponseRedirect('')
+
+def createAuth(request):
+    if request.method == 'GET':
+        # auth = Authenticator.objects.all().delete()
+        auth = Authenticator.objects.filter(**request.GET.dict())
+        data = serializers.serialize("json", auth)
+        return JsonResponse(json.loads(data), safe=False)
+
+    if request.method == 'POST':
+        user_id = request.POST["user_id"]
+        response_data = {}
+
+        try:
+            auth = Authenticator.objects.get(user_id=user_id)
+        except ObjectDoesNotExist:
+            authenticator = hmac.new(
+                key=settings.SECRET_KEY.encode('utf-8'),
+                msg=os.urandom(32),
+                digestmod='sha256',
+            ).hexdigest()
+
+            theAuth = Authenticator(user_id=user_id, authenticator=authenticator)
+
+            theAuth.save()
+            response_data['result'] = '200'
+            response_data['message'] = 'OK: Successful'
+            response_data['auth'] = json.loads(serializers.serialize("json", [theAuth, ]))
+            return JsonResponse(response_data, safe=False)
+        else:
+            listAuth = Authenticator.objects.filter(user_id=user_id)
+            for singleAuth in listAuth:
+                singleAuth.delete()
+
+            authenticator = hmac.new(
+                key=settings.SECRET_KEY.encode('utf-8'),
+                msg=os.urandom(32),
+                digestmod='sha256',
+            ).hexdigest()
+            auth.authenticator = authenticator
+            auth.save()
+
+            response_data = {}
+            response_data['result'] = '200'
+            response_data['message'] = 'OK: Successful'
+            response_data['auth'] = json.loads(serializers.serialize("json", [auth, ]))
+            return JsonResponse(response_data, safe=False)
+
+    else:
+        response_data = {}
+        response_data['result'] = '400'
+        response_data['message'] = 'Bad Request'
+        return JsonResponse(response_data, safe=False)
+
+def checkAuth(request):
+    if request.method == 'POST':
+        # user_id = request.POST["user_id"]
+        token = request.POST["token"]
+        response_data = {}
+
+        try:
+            auth = Authenticator.objects.get(pk=token)
+        except ObjectDoesNotExist:
+            response_data = {}
+            response_data['result'] = '404'
+            response_data['message'] = token
+            return JsonResponse(response_data, safe=False)
+
+        else:
+            date = auth.date_created
+            currentDate = timezone.now()
+            time = (currentDate - date).seconds / 3600
+            days = (currentDate - date).days
+            if (time >= 1 or days > 0):
+                auth.delete()
+                response_data['result'] = '404'
+                response_data['message'] = token
+                return JsonResponse(response_data, safe=False)
+            else:
+                response_data['result'] = '200'
+                response_data['message'] = 'OK: Successful'
+                return JsonResponse(response_data, safe=False)
+
+
+def removeAuth(request):
+    if request.method == 'POST':
+        token = request.POST['token']
+        response_data = {}
+
+        try:
+            auth = Authenticator.objects.get(pk=token)
+        except ObjectDoesNotExist:
+            response_data['result'] = '404'
+            response_data['message'] = token
+            return JsonResponse(response_data, safe=False)
+        else:
+            auth.delete()
+            response_data['result'] = '200'
+            response_data['message'] = 'OK: Successful'
+            return JsonResponse(response_data, safe=False)
+
+
+def checkUser(request):
+    if request.method == 'POST':
+
+        response_data = {}
+        form = UserFormCheckUser(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            theUser = User.objects.get(username=username)
+
+            if (hashers.check_password(password, theUser.password)):
+                response_data['result'] = '200'
+                response_data['message'] = 'OK: Successful'
+                response_data['user_id'] = theUser.pk
+                return JsonResponse(response_data, safe=False)
+            else:
+                response_data['result'] = '404'
+                response_data['message'] = 'Invalid User'
+                return JsonResponse(response_data, safe=False)
+        else:
+            response_data['result'] = '400'
+            response_data['message'] = 'Bad Request'
+            return JsonResponse(response_data, safe=False)
+
+def getUserByAuth(request):
+    if request.method == 'POST':
+        if 'token' not in request.POST:
+            response_data = {}
+            response_data['result'] = '404'
+            response_data['message'] = "No token given"
+            return JsonResponse(response_data, safe=False)
+        else:
+            token = request.POST["token"]
+            try:
+                auth = Authenticator.objects.get(pk=token)
+            except ObjectDoesNotExist:
+                response_data = {}
+                response_data['result'] = '404'
+                response_data['message'] = token
+                return JsonResponse(response_data, safe=False)
+            else:
+                date = auth.date_created
+                currentDate = timezone.now()
+                time = (currentDate - date).seconds / 3600
+                days = (currentDate - date).days
+                if (time >= 1 or days > 0):
+                    auth.delete()
+                    response_data = {}
+                    response_data['result'] = '404'
+                    response_data['message'] = token
+                    return JsonResponse(response_data, safe=False)
+                else:
+                    user_id = auth.user_id
+                    current_user = User.objects.get(pk=user_id)
+                    response_data = {}
+                    response_data['result'] = '200'
+                    response_data['message'] = 'OK: Successful'
+                    response_data['user'] = json.loads(serializers.serialize("json", [current_user]))
+                    return JsonResponse(response_data, safe=False)

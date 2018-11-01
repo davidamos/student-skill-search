@@ -54,3 +54,17 @@ class Inventory(models.Model):
 		return str('ShoeIndex: ' + str(self.shoeIndex) + '\n' +
 				   'Quantity: ' + str(self.quantity) + '\n' +
 				   'Owner: ' + str(self.owner) + '\n')
+
+class User(models.Model):
+    firstName = models.CharField(max_length=20)
+    lastName = models.CharField(max_length=20)
+    username = models.CharField(max_length=30)
+    password = models.CharField(max_length=128)
+
+    def __str__(self): 
+        return self.firstName + " " + self.lastName
+
+class Authenticator(models.Model):
+    user_id = models.CharField(max_length=50)
+    authenticator = models.CharField(max_length=255, primary_key=True, unique=True)
+    date_created = models.DateTimeField(auto_now_add=True, blank=True)

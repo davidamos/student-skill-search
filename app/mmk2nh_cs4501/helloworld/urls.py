@@ -11,6 +11,14 @@ from helloworld.views import user_views_all, user_views_create, user_views_read,
 urlpatterns = [
 	path('', views.index, name='index'), # HOME PAGE
 	#
+	# AUTH
+	#
+	url(r'^/user/check/$', views.checkUser),
+    url(r'^/user/auth/$', views.getUserByAuth),
+	url(r'^/auth/create/$', views.createAuth),
+    url(r'^/auth/check/$', views.checkAuth),
+    url(r'^/auth/remove/$', views.removeAuth),
+	#
 	# URLS FOR INVENTORY
 	#
 	url(r'^api/v1/inventory$', inventory_views_all, name="inventoryHomePage"),
