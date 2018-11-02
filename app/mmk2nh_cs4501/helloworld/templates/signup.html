@@ -6,11 +6,8 @@
 {% block content %}
 	<h2>Create A Account</h2>
 	<form method="post">
-		<p><input type="text" title="First Name" placeholder="firstName" />
-		<input type="text" title="Last Name" placeholder="lastName" /></p>
-		<p><input type="text" title="username" placeholder="username" />
-		<input type="password" title="username" placeholder="password" /></p>
-		<button type="submit">Sign Up</button>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Sign UP</button>
 	</form>
-
 {% endblock %}

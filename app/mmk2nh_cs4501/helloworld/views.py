@@ -14,7 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 from helloworld.models import Shoe, User, Transactions, Inventory
 from helloworld.serializers import ShoeSerializer, UserSerializer, TransactionsSerializer, InventorySerializer
 from .forms import UserForm, UserFormCheckUser
-
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def _error_response(request, error_msg, error_specific=None):
@@ -33,6 +33,23 @@ def _success_response(request, resp=None):
 def index(request):
 	return render(request, 'home.html')
 
+@csrf_exempt
+def signup_view(request):
+    form = UserCreationForm()
+    return render(request, 'helloworld/signup.html', {'form':form})
+
+@csrf_exempt
+def register(request):
+    if request.method == 'POST': 
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+
+    args = {'form': form}
+    return render(request, 'signup.html', args)
 #
 # AUTH
 #
@@ -42,7 +59,22 @@ def login(request):
     return render(request, 'registration/login.html')
 @csrf_exempt
 def signup(request):
-    return render(request, 'signup.html')
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.firstName = form.firstName
+            post.lastName = form.cleanedData[lastName]
+            post.username = form.cleanedData[username]
+            post.password = form.cleanedData[password]
+            
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = UserForm()
+    return render(request, 'signup.html', {'form': form})
+
+
 
 #
 #	INVENTORY
@@ -61,6 +93,7 @@ def inventory_views_create(request):
 								 owner=inventory['owner'])
 	i.save()
 	return _success_response(request, {'shoeIndex': i.shoeIndex, 'quantity': i.quantity, 'owner':i.owner})
+
 @csrf_exempt
 def inventory_views_read(request, pk):
 	inventory = Inventory.objects.get(id=pk)

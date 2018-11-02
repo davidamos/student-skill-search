@@ -12,6 +12,8 @@ from helloworld.views import login, signup
 urlpatterns = [
 	path('', views.index, name='index'), # HOME PAGE
 
+	url(r'^register/$', views.register, name='register'),
+
 	url(r'^account/create/$',signup, name="accountCreatePage"),
 	url(r'^account/login/$', login, name="accountLoginPage"),
 	url(r'^account/logout/$', shoe_views_all, name="accountLogoutPage"),
