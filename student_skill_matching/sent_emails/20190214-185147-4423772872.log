@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: kw2ae@virginia.edu
+Date: Thu, 14 Feb 2019 18:51:47 -0000
+Message-ID: 
+ <155017030725.36593.11424960295872612104@kevins-macbook-pro-2.local>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MQ/53u-13d556bc8d19e1970bf6/
+
+Your username, in case you've forgotten: group_nine
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

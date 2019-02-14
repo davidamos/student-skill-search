@@ -10,7 +10,7 @@
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Login</a>
-  <a href="/accounts/signup/">Sign Up</a>
+  <a href="{% url 'signup' %}">Sign Up</a>
 {% endif %}
 
 {% endblock %}
