@@ -12,6 +12,6 @@ env:
 install:
   - pip install -r requirements.txt
 before_script:
-  - sqlite3 test.db
+  - python3 manage.py migrate
 script:
   - python3 manage.py test
