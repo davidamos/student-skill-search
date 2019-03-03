@@ -12,4 +12,10 @@
   {% else %}
     <input type="checkbox" name="checkbox"> {{user.username}} is not searching for a partner<br>
   {% endif %}
+  <br>
+  {% if user.image %}
+    <img src="{{ user.image.url }}" width="120" alt="Error loading image">
+  {% else %}
+    <p>No image uploaded</p>
+  {% endif %}
 {% endblock %}

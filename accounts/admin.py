@@ -14,7 +14,7 @@ class CustomUserAdmin(UserAdmin):
 
     #Necessary to make extra fields visibile in admin
     fieldsets = (
-        (('User'), {'fields': ('username', 'email', 'is_searching')}),
+        (('User'), {'fields': ('username', 'email', 'is_searching', 'image')}),
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)
