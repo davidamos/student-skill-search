@@ -12,4 +12,9 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['email', 'username',]
 
+    #Necessary to make extra fields visibile in admin
+    fieldsets = (
+        (('User'), {'fields': ('username', 'email', 'is_searching')}),
+    )
+
 admin.site.register(CustomUser, CustomUserAdmin)

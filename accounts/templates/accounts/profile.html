@@ -6,4 +6,10 @@
 {% block content %}
   <h2>Profile</h2>
   Name: {{ user.username }}
+  <br>
+  {% if user.is_searching %}
+    <input type="checkbox" name="checkbox" checked> {{user.username}} is searching for a partner<br>
+  {% else %}
+    <input type="checkbox" name="checkbox"> {{user.username}} is not searching for a partner<br>
+  {% endif %}
 {% endblock %}
