@@ -151,7 +151,7 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 AUTH_USER_MODEL = 'accounts.CustomUser' 
 
-if '/app' in os.environ['HOME']:
+if '/app' in os.environ:
     import django_heroku
     # Activate Django-Heroku.
     django_heroku.settings(locals())
