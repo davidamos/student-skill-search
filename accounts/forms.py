@@ -8,9 +8,9 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('username', 'email')
 
-class CustomProfileCreationForm(UserCreationForm):
+class CustomProfileCreationForm(forms.ModelForm):
 
-    class Meta(UserCreationForm):
+    class Meta(forms.ModelForm):
         model = CustomUser
         fields = ('description', 'availability', 'location', 'phone_number', 'profile_email', 'home_address', 'qualities')
 
