@@ -5,7 +5,11 @@ python:
   - "3.6"
   - "3.6-dev"  # 3.6 development branch
   - "3.7-dev"  # 3.7 development branch
+env:
+  - DJANGO=2.1.7 DB=sqlite3
 install:
   - pip install -r requirements.txt
 script:
+  - python3 manage.py makemigrations
+  - python3 manage.py migrate
   - python3 manage.py test

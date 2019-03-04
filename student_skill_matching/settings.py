@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-import django_heroku
+if '/app' in os.environ['HOME']:
+    import django_heroku
+    # Activate Django-Heroku.
+    django_heroku.settings(locals())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -131,6 +134,3 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 AUTH_USER_MODEL = 'accounts.CustomUser' 
-TIME_INPUT_FORMATS = ('%H:%M',)
-# Activate Django-Heroku.
-django_heroku.settings(locals())
