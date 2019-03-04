@@ -7,6 +7,8 @@ from .forms import CourseForm
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 from datetime import datetime
+from django.utils import timezone
+
 
 class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
