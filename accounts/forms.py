@@ -9,6 +9,12 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('username', 'email')
 
+class CustomProfileCreationForm(forms.ModelForm):
+
+    class Meta(forms.ModelForm):
+        model = CustomUser
+        fields = ('description', 'availability', 'location', 'phone_number', 'profile_email', 'home_address', 'qualities')
+        
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
@@ -17,13 +23,3 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 
-
-class DescriptionForm(ModelForm):
-    class Meta:
-        model = Description
-        fields = ['your_description']
-
-class LocationForm(ModelForm):
-    class Meta:
-        model = Locations
-        fields = ['input_location']
