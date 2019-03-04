@@ -18,6 +18,13 @@ class CustomUser(AbstractUser):
     is_searching = models.BooleanField(default=True)
     image = models.ImageField(upload_to='profile_image', blank=True)
     courses = models.ManyToManyField('Course', blank=True)
+    description = models.CharField(max_length=2000, blank=True)
+    availability = models.CharField(max_length=1000, blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    phone_number = models.CharField(max_length=20, blank=True)
+    profile_email = models.CharField(max_length=100, blank=True)
+    home_address = models.CharField(max_length=200, blank=True)
+    qualities = models.CharField(max_length=1000, blank=True)
     def __str__(self):
         return self.email
 
@@ -34,5 +41,4 @@ class Course(models.Model):
 	def __str__(self):
 		return self.course_code
 		# return '{} {} {} {} {} {} {} {}'.format(self.course_code, self.course_section, str(self.course_is_lecture), self.course_professor, self.course_location, self.course_days, self.course_start_time.strftime("%H:%M"), self.course_end_time.strftime("%H:%M"))
-
 

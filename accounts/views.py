@@ -4,7 +4,7 @@ from django.views import generic
 from django.shortcuts import redirect, render
 from .forms import CourseForm
 
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomProfileCreationForm
 from .models import CustomUser
 from datetime import datetime
 from django.utils import timezone
@@ -39,6 +39,7 @@ def post_course(request):
 
 def profile(request):
     if request.user.is_authenticated:
-        return render(request, 'accounts/profile.html')
+        form = CustomProfileCreationForm()
+        return render(request, 'accounts/profile.html', {'form': form})
     else:
         return redirect("{% url 'login' %}")
