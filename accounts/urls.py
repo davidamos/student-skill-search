@@ -7,5 +7,6 @@ from . import views
 
 urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),
-    path('profile/', views.profile, name='profile')
+    path('profile/', views.profile, name='profile'),
+    path('profile/add/', views.post_course, name='post_course'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

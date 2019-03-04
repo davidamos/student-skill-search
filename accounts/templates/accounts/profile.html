@@ -18,4 +18,14 @@
   {% else %}
     <p>No image uploaded</p>
   {% endif %}
+  <a href="{% url 'post_course' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Add a Course</a> <br>
+  <b>Courses</b>: <br>
+  {% for course in user.courses.all %}
+    Course Code: {{course.course_code}} <br>
+    Course Professor: {{course.course_professor}} <br>
+    Course Location: {{course.course_location}} <br>
+    Course Days: {{course.course_days}} <br>
+    Course Time: {{course.course_start_time|stringformat:"H:i"}} {{course.course_end_time}} <br>
+    <br>
+  {% endfor %}
 {% endblock %}
