@@ -6,6 +6,13 @@
 {% block content %}
   <h2>Profile</h2>
   Name: {{ user.username }}
+  <div>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Create Profile</button>
+    </form>
+  </div>
   <br>
   {% if user.is_searching %}
     <input type="checkbox" name="checkbox" checked> {{user.username}} is searching for a partner<br>
@@ -18,13 +25,4 @@
   {% else %}
     <p>No image uploaded</p>
   {% endif %}
-  <form method="post">
-    Enter Your Description
-    <br>
-    {% csrf_token %}
-    {{form.DescriptionForm}}
-    <input type="text">
-    <br>
-    <button type="submit">Submit Description</button>
-  </form>
 {% endblock %}

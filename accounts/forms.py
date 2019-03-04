@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.forms import ModelForm
-from .models import CustomUser, Description, Locations
+from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
 
@@ -9,6 +9,12 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('username', 'email')
 
+class CustomProfileCreationForm(forms.ModelForm):
+
+    class Meta(forms.ModelForm):
+        model = CustomUser
+        fields = ('description', 'availability', 'location', 'phone_number', 'profile_email', 'home_address', 'qualities')
+        
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
@@ -17,13 +23,3 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 
-
-class DescriptionForm(ModelForm):
-    class Meta:
-        model = Description
-        fields = ['your_description']
-
-class LocationForm(ModelForm):
-    class Meta:
-        model = Locations
-        fields = ['input_location']

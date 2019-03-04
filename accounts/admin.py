@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomProfileCreationForm
 from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
@@ -14,7 +14,7 @@ class CustomUserAdmin(UserAdmin):
 
     #Necessary to make extra fields visibile in admin
     fieldsets = (
-        (('User'), {'fields': ('username', 'email', 'is_searching', 'image')}),
+        (('User'), {'fields': ('username', 'email', 'is_searching', 'image', 'description', 'availability', 'location', 'phone_number', 'profile_email', 'home_address', 'qualities')}),
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)
