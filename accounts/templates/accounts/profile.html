@@ -18,4 +18,13 @@
   {% else %}
     <p>No image uploaded</p>
   {% endif %}
+  <form method="post">
+    Enter Your Description
+    <br>
+    {% csrf_token %}
+    {{form.DescriptionForm}}
+    <input type="text">
+    <br>
+    <button type="submit">Submit Description</button>
+  </form>
 {% endblock %}
