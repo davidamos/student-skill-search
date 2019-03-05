@@ -4,8 +4,39 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Student Skill Matching{% endblock %}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" style="color:blue"; onclick="location.href='{% url 'home' %}'">Student Skill Search</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Enter class, name, etc" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Quick Search</button>
+    </form>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Search</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" onclick="location.href='{% url 'profile' %}'">Profile</a>
+      </li>
+    </ul>
+     {% if user.is_authenticated %}
+        <button class="btn btn-outline-success my-2 my-sm-0" type=submit" onclick="location.href='{% url 'logout' %}'">Log Out</button>
+      {% else %}
+        <button class="btn btn-outline-success my-2 my-sm-0" type=submit" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'">Sign In</button>
+      {% endif %}
+    
+  </div>
+</nav>
+
   <main>
     {% block content %}
     {% endblock %}
