@@ -4,14 +4,6 @@ from .models import CustomUser
 
 class CustomUserModelTests(TestCase):
 
-    def test_dummy(self):
-        """
-        ensure tests work
-        """
-        x = 1
-        y = 1
-        self.assertEqual(x,y)
-
     # Students are defaulted to searching for a partner
     def test_is_searching(self):
         student = CustomUser()
@@ -23,3 +15,14 @@ class CustomUserModelTests(TestCase):
         student.is_searching = False
         self.assertEqual(student.is_searching, False)
 
+    #Student has no image upon creation
+    def test_no_image(self):
+        student = CustomUser()
+        self.assertEqual("", student.image.__str__())
+
+    #Student uploads a profile picture
+    def test_has_image(self):
+        student = CustomUser()
+        picture = "test_image.jpg"
+        student.image = picture
+        self.assertEqual(student.image, picture)
