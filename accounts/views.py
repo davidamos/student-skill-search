@@ -7,6 +7,7 @@ from .forms import CourseForm
 from .forms import CustomUserCreationForm, CustomProfileCreationForm
 from .models import CustomUser
 from datetime import datetime
+from datetime import timedelta
 from django.utils import timezone
 
 
@@ -21,15 +22,18 @@ def post_course(request):
 		form = CourseForm(request.POST)
 		if form.is_valid():
 			course = form.save(commit=False)
-			print(course.course_start_time)
-			start_time = request.POST['course_start_time']
-			end_time = request.POST['course_end_time']
-			course.course_start_time = datetime.strptime(start_time, '%H:%M')
-			course.course_end_time = datetime.strptime(end_time, '%H:%M')
-			print(course.course_start_time)
-			print(type(course.course_start_time))
-			print(course)
+			'''Need to check if start time is before end time'''
+			start_time = datetime.strptime(request.POST['course_start_time'], '%H:%M')
+			end_time = datetime.strptime(request.POST['course_end_time'], '%H:%M')
+			if start_time < end_time:
+				course.course_start_time = start_time
+				course.course_end_time = end_time
+			else:
+				course.course_start_time = start_time
+				course.course_end_time = end_time + timedelta(hours=12)
 			course.save()
+			print(request.user)
+			print(request.user.courses.all())
 			request.user.courses.add(course)
 			return redirect('profile')
 	else:
