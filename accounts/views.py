@@ -2,7 +2,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import redirect, render
-from .forms import CourseForm
+from .forms import ClassForm
 
 from .forms import CustomUserCreationForm, CustomProfileCreationForm
 from .models import CustomUser
@@ -19,7 +19,7 @@ class SignUp(generic.CreateView):
 def post_course(request):
 	if request.method == 'POST':
 		print(request.POST)
-		form = CourseForm(request.POST)
+		form = ClassForm(request.POST)
 		if form.is_valid():
 			course = form.save(commit=False)
 			'''Need to check if start time is before end time'''
@@ -37,7 +37,7 @@ def post_course(request):
 			request.user.courses.add(course)
 			return redirect('profile')
 	else:
-		form = CourseForm()
+		form = ClassForm()
 	return render(request, 'accounts/course_form.html', {'form': form})
 
 

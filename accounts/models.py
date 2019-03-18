@@ -17,7 +17,7 @@ class CustomUser(AbstractUser):
     # add additional fields in here
     is_searching = models.BooleanField(default=True)
     image = models.ImageField(upload_to='profile_image', blank=True)
-    courses = models.ManyToManyField('Course', blank=True)
+    courses = models.ManyToManyField('Class', blank=True)
     description = models.CharField(max_length=2000, blank=True)
     availability = models.CharField(max_length=1000, blank=True)
     location = models.CharField(max_length=100, blank=True)
@@ -28,7 +28,7 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
 
-class Course(models.Model):
+class Class(models.Model):
 	course_code = models.CharField(max_length=20, blank=False)
 	course_section = models.CharField(max_length=4, blank=False)
 	course_is_lecture = models.BooleanField(default=True)

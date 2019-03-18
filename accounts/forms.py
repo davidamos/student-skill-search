@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Course
+from .models import CustomUser, Class
 
 from django.forms import ModelForm
 
@@ -22,8 +22,8 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ('username', 'email')
 
-class CourseForm(forms.ModelForm):
+class ClassForm(forms.ModelForm):
 
 	class Meta:
-		model = Course
+		model = Class
 		fields = '__all__'
