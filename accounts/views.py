@@ -2,7 +2,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import redirect, render
-from .forms import ClassForm
+from .forms import CourseForm
 
 from .forms import CustomUserCreationForm, CustomProfileCreationForm
 from .models import CustomUser
