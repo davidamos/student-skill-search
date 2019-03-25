@@ -3,7 +3,8 @@
 
 {% block title %}Profile{% endblock %}
 {% block content %}
-  <h2>Profile</h2>
+  <h2 style="color:blue;margin-left:15px">Your Profile</h2>
+<div style="margin-left:15px;">
   Name: {{ user.username }}
   <div>
     <form method="post">
@@ -35,4 +36,5 @@
     <br>
   {% endfor %}
 {% endblock %}
+</div>
 
