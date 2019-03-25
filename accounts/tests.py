@@ -33,24 +33,24 @@ class CustomUserModelTests(TestCase):
         self.assertEqual("", student.description)
 
     #Student has no availability upon creation
-    def test_no_availability(self):
-        student = CustomUser()
-        self.assertEqual("", student.availability)
+    #def test_no_availability(self):
+    #    student = CustomUser()
+    #    self.assertEqual("", student.availability)
 
     #Student has no desired qualities upon creation
-    def test_no_qualities(self):
-        student = CustomUser()
-        self.assertEqual("", student.qualities)
+    #def test_no_qualities(self):
+    #    student = CustomUser()
+    #    self.assertEqual("", student.qualities)
 
     #Student has no profile email upon creation
-    def test_no_profile_email(self):
-        student = CustomUser()
-        self.assertEqual("", student.profile_email)
+    #def test_no_profile_email(self):
+    #    student = CustomUser()
+    #    self.assertEqual("", student.profile_email)
 
     #Student has no phone number upon creation
-    def test_no_phone_number(self):
-        student = CustomUser()
-        self.assertEqual("", student.phone_number)
+    #def test_no_phone_number(self):
+    #    student = CustomUser()
+    #    self.assertEqual("", student.phone_number)
 
     #Student inputs a location
     def test_has_location(self):
