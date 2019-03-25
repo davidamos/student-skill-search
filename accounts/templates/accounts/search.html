@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+{% block content %}
+{% if search_list %}
+    <ul>
+    
+    {% for customuser in search_list %}
+        <li><a href="/accounts/{{ customuser.id }}/">{{ customuser.username }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No users match your search.</p>
+{% endif %}
+{% endblock %}
