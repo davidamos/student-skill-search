@@ -7,4 +7,14 @@
 
 <p>{{ customuser.description }} </p>
 
+<b>Courses</b>: <br>
+  {% for course in customuser.courses.all %}
+    Course Code: {{course.course_code}} <br>
+    Course Professor: {{course.course_professor}} <br>
+    Course Location: {{course.course_location}} <br>
+    Course Days: {{course.course_days}} <br>
+    Course Time: {{course.course_start_time}} - {{course.course_end_time}} <br>
+    <br>
+{% endfor %}
+
 {% endblock %}

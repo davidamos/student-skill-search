@@ -11,5 +11,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('profile/add/', views.post_course, name='post_course'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('search/', views.SearchView.as_view(), name='search'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,13 +2,15 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import redirect, render
-from .forms import CourseForm
+from .forms import ClassForm
 
 from .forms import CustomUserCreationForm, CustomProfileCreationForm
 from .models import CustomUser
 from datetime import datetime
 from datetime import timedelta
 from django.utils import timezone
+
+import operator
 
 
 class SignUp(generic.CreateView):
@@ -51,3 +53,27 @@ def profile(request):
 class DetailView(generic.DetailView):
     model = CustomUser
     template_name = 'accounts/user-profile.html'
+
+class SearchView(generic.ListView):
+	
+	template_name = 'accounts/search.html'
+	context_object_name = 'search_list'
+
+	def get_queryset(self):
+		result = CustomUser.objects.order_by('username')
+		query = self.request.GET.get('searchterm')
+		resultslist = []
+		if query:
+			query_list = query.split()
+			for u in result:
+				if u.is_searching == True:
+					if query in u.username or query in u.description:
+						resultslist.append(u)
+					else:
+						for course in u.courses.all():
+							if query.lower() in course.course_code.lower():
+								resultslist.append(u)
+								break
+			#result = result.filter(username=query) or result.filter(description=query)
+		return resultslist
+		#return CustomUser.objects.order_by('username')
