@@ -22,7 +22,7 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ('username', 'email')
 
-class ClassForm(forms.ModelForm):
+class CourseForm(forms.ModelForm):
 
 	class Meta:
 		model = Class

@@ -1,8 +1,9 @@
 # accounts/views.py
 from django.urls import reverse_lazy
 from django.views import generic
+from django.views.generic import TemplateView
 from django.shortcuts import redirect, render
-from .forms import ClassForm
+from .forms import CourseForm
 
 from .forms import CustomUserCreationForm, CustomProfileCreationForm
 from .models import CustomUser
@@ -43,12 +44,32 @@ def post_course(request):
 	return render(request, 'accounts/course_form.html', {'form': form})
 
 
-def profile(request):
-    if request.user.is_authenticated:
-        form = CustomProfileCreationForm()
-        return render(request, 'accounts/profile.html', {'form': form})
-    else:
-        return redirect("{% url 'login' %}")
+#def profile(request):
+#    if request.user.is_authenticated:
+#        form = CustomProfileCreationForm()
+#        return render(request, 'accounts/profile.html', {'form': form})
+#    else:
+#        return redirect("{% url 'login' %}")
+
+class ProfileView(TemplateView):
+	template_name = 'accounts/profile.html'
+	def get(self, request):
+		form = CustomProfileCreationForm()
+		return render(request, self.template_name, {'form': form})
+	def post(self, request):
+		form = CustomProfileCreationForm(request.POST)
+		if form.is_valid():
+			form.save(commit=False)
+			request.user.description = request.POST['description']
+			request.user.availability = request.POST['availability']
+			request.user.location = request.POST['location']
+			request.user.phone_number = request.POST['phone_number']
+			request.user.profile_email = request.POST['profile_email']
+			request.user.home_address = request.POST['home_address']
+			request.user.qualities = request.POST['qualities']
+			request.user.save()
+			return redirect('profile')
+		return render(request, self.template_name, {'form': form, 'text': text})
 
 class DetailView(generic.DetailView):
     model = CustomUser
