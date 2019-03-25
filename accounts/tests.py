@@ -26,3 +26,14 @@ class CustomUserModelTests(TestCase):
         picture = "test_image.jpg"
         student.image = picture
         self.assertEqual(student.image, picture)
+
+    #Student has no description upon creation
+    def test_no_description(self):
+        student = CustomUser()
+        self.assertEqual("", student.description)
+
+    #Student inputs a location
+    def test_has_location(self):
+        student = CustomUser()
+        student.location = "Clark"
+        self.assertEqual("Clark", student.location)
