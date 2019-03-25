@@ -3,13 +3,13 @@
 {% block title %}Search{% endblock %}
 {% block content %}
 {% if search_list %}
+    <h4 style="padding-left:15px; padding-top:30px; color:blue">Matched users: </h4>
     <ul>
-    
     {% for customuser in search_list %}
-        <li><a href="/accounts/{{ customuser.id }}/">{{ customuser.username }}</a></li>
+        <li style="color:orange;"><a href="/accounts/{{ customuser.id }}/">{{ customuser.username }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No users match your search.</p>
+    <div style="padding-left:15px; padding-top:30px;color:red;font-size:18px;font-weight:bold">No users match your query</div>
 {% endif %}
 {% endblock %}

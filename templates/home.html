@@ -5,10 +5,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
+  <h3 style="color:blue; text-align:center; padding-top:50px"> Welcome back, {{ user.username }}! </h3>
 {% else %}
   <br>
-  <p style="padding-left:15px;">You must be logged in to view this site</p>
+  <h3 style="color:blue; text-align:center; padding-top:70px">Welcome to Student Skill Matching!</h3>
+  <h5 style="color:orange; text-align:center; padding-top:40px">Please log in or sign up to have full functionality of the site!</h5>
 {% endif %}
 
 {% endblock %}
