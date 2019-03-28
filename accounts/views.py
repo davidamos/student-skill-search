@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from .forms import CourseForm
 
 from .forms import CustomUserCreationForm, CustomProfileCreationForm
-from .models import CustomUser
+from .models import CustomUser, Class
 from datetime import datetime
 from datetime import timedelta
 from django.utils import timezone
@@ -18,6 +18,27 @@ class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
+
+def all_courses(request):
+	results = Class.objects.all()
+	return render(request, 'accounts/all_courses.html', {'results': results})
+
+def add_course(request):
+	for i in request.POST.getlist('course'):
+		course = Class.objects.get(pk=i)
+		request.user.courses.add(course)
+	return redirect('profile')
+
+def list_majors(request):
+	return render(request, 'accounts/list_majors.html')
+
+
+def specified_major(request, course_code):
+	print(course_code)
+	results = Class.objects.filter(course_code__contains=course_code)
+	return render(request, 'accounts/all_courses.html', {'results':results})
+
+	
 
 def post_course(request):
 	if request.method == 'POST':
@@ -35,8 +56,6 @@ def post_course(request):
 				course.course_start_time = start_time
 				course.course_end_time = end_time + timedelta(hours=12)
 			course.save()
-			print(request.user)
-			print(request.user.courses.all())
 			request.user.courses.add(course)
 			return redirect('profile')
 	else:
