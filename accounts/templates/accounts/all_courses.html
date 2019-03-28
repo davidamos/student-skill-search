@@ -1,0 +1,53 @@
+
+<form action="{% url 'add_course' %}" method="post">
+    {% csrf_token %}
+    <table>
+        <tr bgcolor="#FFFF33">
+            <th>Select Course</th>
+            <th>Course Code</th>
+            <th>Course Section</th>
+            <th>Course Type</th>
+            <th>Course Professor</th>
+            <th>Course Location</th>
+            <th>Course Days</th>
+            <th>Course Start Time</th>
+            <th>Course End Time</th>
+        </tr>
+        {% for item in results %}
+        {% if item.course_is_lecture %}
+        <tr bgcolor="#98FB98">
+            <td>
+                 <div class="checkbox">
+                     <label><input type="checkbox" id='course{{ forloop.counter }}' name="course" value="{{ item.id }}"></label>
+                 </div>
+             </td>
+            <td>{{ item.course_code }}</td>
+            <td>{{ item.course_section }}</td>
+            <td>Lecture</td>
+            <td>{{ item.course_professor }}</td>
+            <td>{{ item.course_location }}</td>
+            <td>{{ item.course_days }}</td>
+            <td>{{ item.course_start_time }}</td>
+            <td>{{ item.course_end_time }}</td>
+        </tr>
+        {% else %}
+        <tr bgcolor="#add8e6"> 
+            <td>
+                 <div class="checkbox">
+                     <label><input type="checkbox" id='course{{ forloop.counter }}' name="course" value="{{ item.id }}"></label>
+                 </div>
+             </td>
+            <td>{{ item.course_code }}</td>
+            <td>{{ item.course_section }}</td>
+            <td>Discussion</td>
+            <td>{{ item.course_professor }}</td>
+            <td>{{ item.course_location }}</td>
+            <td>{{ item.course_days }}</td>
+            <td>{{ item.course_start_time }}</td>
+            <td>{{ item.course_end_time }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+    <input type="submit" value="Select Courses">
+</form>

@@ -27,3 +27,4 @@ class CourseForm(forms.ModelForm):
 	class Meta:
 		model = Class
 		fields = '__all__'
+
