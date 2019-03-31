@@ -67,7 +67,9 @@ class SearchView(generic.ListView):
 			query_list = query.split()
 			for u in result:
 				if u.is_searching == True:
-					if query in u.username or query in u.description:
+					if query.lower() in u.username or query.lower() in u.description or query.lower() in u.qualities \
+					or query.lower() in u.location or query.lower() in u.phone_number or query.lower() in u.profile_email \
+					or query.lower() in u.availability:
 						resultslist.append(u)
 					else:
 						for course in u.courses.all():
