@@ -1,10 +1,13 @@
-{% extends 'accounts/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h2>New Course</h2>
+    <h2 style="color:blue;margin-left:15px">New Course</h2>
+
     <form method="POST" class="post-form">
     	{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <div style="margin-left:15px">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Save</button>
+        </div>
     </form>
 {% endblock %}

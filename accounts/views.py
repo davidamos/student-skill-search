@@ -1,11 +1,12 @@
 # accounts/views.py
 from django.urls import reverse_lazy
 from django.views import generic
+from django.views.generic import TemplateView
 from django.shortcuts import redirect, render
-from .forms import ClassForm
+from .forms import CourseForm
 
 from .forms import CustomUserCreationForm, CustomProfileCreationForm
-from .models import CustomUser
+from .models import CustomUser, Class
 from datetime import datetime
 from datetime import timedelta
 from django.utils import timezone
@@ -17,6 +18,27 @@ class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
+
+def all_courses(request):
+	results = Class.objects.all()
+	return render(request, 'accounts/all_courses.html', {'results': results})
+
+def add_course(request):
+	for i in request.POST.getlist('course'):
+		course = Class.objects.get(pk=i)
+		request.user.courses.add(course)
+	return redirect('profile')
+
+def list_majors(request):
+	return render(request, 'accounts/list_majors.html')
+
+
+def specified_major(request, course_code):
+	print(course_code)
+	results = Class.objects.filter(course_code__contains=course_code)
+	return render(request, 'accounts/all_courses.html', {'results':results})
+
+	
 
 def post_course(request):
 	if request.method == 'POST':
@@ -34,8 +56,6 @@ def post_course(request):
 				course.course_start_time = start_time
 				course.course_end_time = end_time + timedelta(hours=12)
 			course.save()
-			print(request.user)
-			print(request.user.courses.all())
 			request.user.courses.add(course)
 			return redirect('profile')
 	else:
@@ -43,12 +63,39 @@ def post_course(request):
 	return render(request, 'accounts/course_form.html', {'form': form})
 
 
-def profile(request):
-    if request.user.is_authenticated:
-        form = CustomProfileCreationForm()
-        return render(request, 'accounts/profile.html', {'form': form})
-    else:
-        return redirect("{% url 'login' %}")
+#def profile(request):
+#    if request.user.is_authenticated:
+#        form = CustomProfileCreationForm()
+#        return render(request, 'accounts/profile.html', {'form': form})
+#    else:
+#        return redirect("{% url 'login' %}")
+
+class ProfileView(TemplateView):
+	template_name = 'accounts/profile.html'
+	def get(self, request):
+		form = CustomProfileCreationForm()
+		return render(request, self.template_name, {'form': form})
+	def post(self, request):
+		form = CustomProfileCreationForm(request.POST)
+		if form.is_valid():
+			form.save(commit=False)
+			request.user.description = request.POST['description']
+			request.user.availability = request.POST['availability']
+			request.user.location = request.POST['location']
+			#Phone Number
+			request.user.phone_number = request.POST['phone_number']
+			if request.user.phone_number.isdigit():
+				request.user.phone_number = request.POST['phone_number']
+				print(request.user.phone_number)
+			else:
+				print("Please enter a valid number")
+				
+			request.user.profile_email = request.POST['profile_email']
+			request.user.home_address = request.POST['home_address']
+			request.user.qualities = request.POST['qualities']
+			request.user.save()
+			return redirect('profile')
+		return render(request, self.template_name, {'form': form, 'text': text})
 
 class DetailView(generic.DetailView):
     model = CustomUser

@@ -3,11 +3,19 @@
 {% block title %} Test {%endblock%}
 {% block content %}
 
-<h2>{{ customuser.username }} </h2>
+<h2 style="color:blue; padding-left:15px">{{ customuser.username }}'s profile </h2>
 
-<p>{{ customuser.description }} </p>
-
-<b>Courses</b>: <br>
+<div style="color:orange;padding-left:15px;">Description: {{ customuser.description }} </div>
+<div style="color:orange;padding-left:15px;">Availability: {{ customuser.availability }} </div>
+<div style="color:orange;padding-left:15px;">Location: {{ customuser.location }} </div>
+<div style="color:orange;padding-left:15px;">Phone Number: {{ customuser.phone_number }} </div>
+<div style="color:orange;padding-left:15px;">Email Address: {{ customuser.profile_email }} </div>
+<div style="color:orange;padding-left:15px;">Home Address: {{ customuser.home_address }} </div>
+<div style="color:orange;padding-left:15px;">Qualities: {{ customuser.qualities }} </div>
+<br>
+<b style="padding-left:15px;">Courses</b>:
+<br>
+<div style="padding-left:15px;">
   {% for course in customuser.courses.all %}
     Course Code: {{course.course_code}} <br>
     Course Professor: {{course.course_professor}} <br>
@@ -16,5 +24,6 @@
     Course Time: {{course.course_start_time}} - {{course.course_end_time}} <br>
     <br>
 {% endfor %}
+</div>
 
 {% endblock %}
