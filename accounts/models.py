@@ -16,7 +16,7 @@ DAYS_OF_WEEK = (
 class CustomUser(AbstractUser):
     # add additional fields in here
     is_searching = models.BooleanField(default=True)
-    image = models.ImageField(upload_to='profile_image', blank=True)
+    image = models.ImageField(default='default.png', blank=True)
     courses = models.ManyToManyField('Class', blank=True)
     description = models.CharField(max_length=2000, blank=True)
     availability = models.CharField(max_length=1000, blank=True)
