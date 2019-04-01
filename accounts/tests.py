@@ -16,10 +16,10 @@ class CustomUserModelTests(TestCase):
         student.is_searching = False
         self.assertEqual(student.is_searching, False)
 
-    #Student has no image upon creation
+    #Student has default image upon creation
     def test_no_image(self):
         student = CustomUser()
-        self.assertEqual("", student.image.__str__())
+        self.assertEqual("default.png", student.image.__str__())
 
     #Student uploads a profile picture
     def test_has_image(self):
