@@ -7,11 +7,31 @@
 <div style="margin-left:15px;">
   Name: {{ user.username }}
   <div>
-    <form method="post">
+    <form id="pForm"method="post">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Create Profile</button>
+      {{ form.as_p}}
+      <button type="submit" onclick="thisclick()">Create Profile</button>
+      
+      
+
     </form>
+  </div>
+  <script>function thisclick()
+    {
+        //window.alert(document.getElementById("pForm").innerHTML);
+
+        // Checks if phone is a number
+        phone_val = document.getElementById("id_phone_number").value;
+        var isnum = /^\d+$/.test(phone_val);
+        if (isnum === true & phone_val.length === 10){
+        }
+        else{
+          window.alert("Please enter a 10 digit phone number without any special characters");
+        }
+
+        // Checks if email is valid:
+    }
+    </script>
   </div>
   <br>
   {% if user.is_searching %}

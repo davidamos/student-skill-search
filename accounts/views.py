@@ -84,11 +84,12 @@ class ProfileView(TemplateView):
 			request.user.location = request.POST['location']
 			#Phone Number
 			request.user.phone_number = request.POST['phone_number']
-			if request.user.phone_number.isdigit():
-				request.user.phone_number = request.POST['phone_number']
-				print(request.user.phone_number)
+			if request.user.phone_number.isdigit() & (len(request.user.phone_number) == 10):
+				#print(request.user.phone_number)
+				pass
 			else:
-				print("Please enter a valid number")
+				request.user.phone_number = "";
+				#print("Please enter a valid number")
 				
 			request.user.profile_email = request.POST['profile_email']
 			request.user.home_address = request.POST['home_address']
