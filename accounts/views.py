@@ -88,7 +88,7 @@ class ProfileView(TemplateView):
 				#print(request.user.phone_number)
 				pass
 			else:
-				request.user.phone_number = "";
+				request.user.phone_number = "n/a";
 				#print("Please enter a valid number")
 				
 			request.user.profile_email = request.POST['profile_email']

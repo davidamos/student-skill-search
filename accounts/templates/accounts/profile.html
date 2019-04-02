@@ -11,15 +11,12 @@
       {% csrf_token %}
       {{ form.as_p}}
       <button type="submit" onclick="thisclick()">Create Profile</button>
-      
-      
-
     </form>
   </div>
-  <script>function thisclick()
+  <script>
+    function thisclick()
     {
         //window.alert(document.getElementById("pForm").innerHTML);
-
         // Checks if phone is a number
         phone_val = document.getElementById("id_phone_number").value;
         var isnum = /^\d+$/.test(phone_val);
@@ -28,11 +25,24 @@
         else{
           window.alert("Please enter a 10 digit phone number without any special characters");
         }
-
         // Checks if email is valid:
+    }
+    function showResponse()
+    {
+        document.getElementById("completeProf").style.display = "block";
     }
     </script>
   </div>
+  <div id="completeProf">
+    <b>Description: </b>{{ request.user.description }}<br>
+    <b>Availability: </b>{{ request.user.availability }}<br>
+    <b>Location: </b>{{ request.user.location }}<br>
+    <b>Phone Number: </b>{{ request.user.phone_number }}<br>
+    <b>Profile Email: </b>{{ request.user.profile_email }}<br>
+    <b>Home Address: </b>{{ request.user.home_address }}<br>
+    <b>Qualities: </b>{{ request.user.qualities }}<br>
+  </div>
+
   <br>
   {% if user.is_searching %}
     <input type="checkbox" name="checkbox" checked> {{user.username}} is searching for a partner<br>
