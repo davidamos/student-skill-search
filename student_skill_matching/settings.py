@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'social_django',
+    'postman',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'student_skill_matching.urls'
+POSTMAN_I18N_URLS = True
 
 TEMPLATES = [
     {
@@ -141,6 +143,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+POSTMAN_AUTO_MODERATE_AS = True  # default is None
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
