@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Student Skill Matching{% endblock %}</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'accounts/index_style_sheet.css' %}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 {% if user.is_authenticated %}
@@ -48,7 +47,7 @@
 </body>
 {% else %}
   <body>
-  <img src="https://rotunda.virginia.edu/sites/rotunda.virginia.edu/files/styles/homepage_image/public/1-4-edited.jpg?itok=A9Uo5TYl" width="1000px" height="400px" alt="Error loading image" style="padding-left:300px">
+  <img src="https://rotunda.virginia.edu/sites/rotunda.virginia.edu/files/styles/homepage_image/public/1-4-edited.jpg?itok=A9Uo5TYl" width="1200px" height="400px" alt="Error loading image" style="padding-left:500px">
     <div style="text-align: center; padding-top:20px">
       <h1 style="color:blue">
         Welcome to Student Skill Search!
