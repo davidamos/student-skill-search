@@ -17,4 +17,5 @@ urlpatterns = [
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
     path('search/', views.SearchView.as_view(), name='search'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^messages/', include('postman.urls', namespace='postman')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

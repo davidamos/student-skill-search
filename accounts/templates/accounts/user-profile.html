@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block title %} Test {%endblock%}
 {% block content %}
@@ -24,6 +24,11 @@
     Course Time: {{course.course_start_time}} - {{course.course_end_time}} <br>
     <br>
 {% endfor %}
+</div>
+
+<br>
+<div style="padding-left:15px">
+  Like what you see? <span><a href="/accounts/messages/write/?recipients={{ customuser.username}}" style="padding-left:15px">Message {{ customuser.username}}!</a></span>
 </div>
 
 {% endblock %}
