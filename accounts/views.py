@@ -84,11 +84,12 @@ class ProfileView(TemplateView):
 			request.user.location = request.POST['location']
 			#Phone Number
 			request.user.phone_number = request.POST['phone_number']
-			if request.user.phone_number.isdigit():
-				request.user.phone_number = request.POST['phone_number']
-				print(request.user.phone_number)
+			if request.user.phone_number.isdigit() & (len(request.user.phone_number) == 10):
+				#print(request.user.phone_number)
+				pass
 			else:
-				print("Please enter a valid number")
+				request.user.phone_number = "";
+				#print("Please enter a valid number")
 				
 			request.user.profile_email = request.POST['profile_email']
 			request.user.home_address = request.POST['home_address']
@@ -114,7 +115,9 @@ class SearchView(generic.ListView):
 			query_list = query.split()
 			for u in result:
 				if u.is_searching == True:
-					if query in u.username or query in u.description:
+					if query.lower() in u.username or query.lower() in u.description or query.lower() in u.qualities \
+					or query.lower() in u.location or query.lower() in u.phone_number or query.lower() in u.profile_email \
+					or query.lower() in u.availability:
 						resultslist.append(u)
 					else:
 						for course in u.courses.all():
