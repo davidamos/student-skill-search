@@ -63,13 +63,6 @@ def post_course(request):
 	return render(request, 'accounts/course_form.html', {'form': form})
 
 
-#def profile(request):
-#    if request.user.is_authenticated:
-#        form = CustomProfileCreationForm()
-#        return render(request, 'accounts/profile.html', {'form': form})
-#    else:
-#        return redirect("{% url 'login' %}")
-
 class ProfileView(TemplateView):
 	template_name = 'accounts/profile.html'
 	def get(self, request):
@@ -95,7 +88,7 @@ class ProfileView(TemplateView):
 			request.user.home_address = request.POST['home_address']
 			request.user.qualities = request.POST['qualities']
 			request.user.save()
-			return redirect('profile')
+			return render(request, 'accounts/user-profile.html', {'customuser':request.user})
 		return render(request, self.template_name, {'form': form, 'text': text})
 
 class DetailView(generic.DetailView):
