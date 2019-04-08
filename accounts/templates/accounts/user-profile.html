@@ -27,8 +27,10 @@
 </div>
 
 <br>
-<div style="padding-left:15px">
-  Like what you see? <span><a href="/accounts/messages/write/?recipients={{ customuser.username}}" style="padding-left:15px">Message {{ customuser.username}}!</a></span>
-</div>
+{% if user.username != customuser.username %}
+  <div style="padding-left:15px">
+    Like what you see? <span><a href="/accounts/messages/write/?recipients={{ customuser.username}}" style="padding-left:15px">Message {{ customuser.username}}!</a></span>
+  </div>
+{% endif %}
 
 {% endblock %}
