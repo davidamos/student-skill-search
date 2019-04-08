@@ -97,18 +97,34 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'g-eecDVbKC1DReh9b8x6UBmE'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'devsavrrkaljkl',
-        'USER': 'dofauqqphiphoy',
-        'PASSWORD': '1b73fecb7b31f681dc06da71450ba69c9b8de4a2dfa0517cdc0bf3912db0f753',
-        'HOST': 'ec2-23-21-165-188.compute-1.amazonaws.com',
-        'PORT': '5432',
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+        #    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #    'NAME': 'travis_ci_test',
+        #    'USER': 'postgres',
+        #    'PASSWORD': '',
+        #    'HOST': 'localhost',
+        #    'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            #'ENGINE': 'django.db.backends.sqlite3',
+            #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'devsavrrkaljkl',
+            'USER': 'dofauqqphiphoy',
+            'PASSWORD': '1b73fecb7b31f681dc06da71450ba69c9b8de4a2dfa0517cdc0bf3912db0f753',
+            'HOST': 'ec2-23-21-165-188.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
+
 
 
 # Password validation
