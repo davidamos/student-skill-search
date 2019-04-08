@@ -63,13 +63,6 @@ def post_course(request):
 	return render(request, 'accounts/course_form.html', {'form': form})
 
 
-#def profile(request):
-#    if request.user.is_authenticated:
-#        form = CustomProfileCreationForm()
-#        return render(request, 'accounts/profile.html', {'form': form})
-#    else:
-#        return redirect("{% url 'login' %}")
-
 class ProfileView(TemplateView):
 	template_name = 'accounts/profile.html'
 	def get(self, request):
@@ -84,18 +77,18 @@ class ProfileView(TemplateView):
 			request.user.location = request.POST['location']
 			#Phone Number
 			request.user.phone_number = request.POST['phone_number']
-			if request.user.phone_number.isdigit() & (len(request.user.phone_number) == 10):
+			#if request.user.phone_number.isdigit() & (len(request.user.phone_number) == 10):
 				#print(request.user.phone_number)
-				pass
-			else:
-				request.user.phone_number = "";
+				#pass
+			#else:
+				#request.user.phone_number = "";
 				#print("Please enter a valid number")
 				
 			request.user.profile_email = request.POST['profile_email']
 			request.user.home_address = request.POST['home_address']
 			request.user.qualities = request.POST['qualities']
 			request.user.save()
-			return redirect('profile')
+			return render(request, 'accounts/user-profile.html', {'customuser':request.user})
 		return render(request, self.template_name, {'form': form, 'text': text})
 
 class DetailView(generic.DetailView):
