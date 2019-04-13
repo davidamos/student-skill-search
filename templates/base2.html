@@ -55,11 +55,14 @@
 </body>
 {% else %}
   <section id="banner" class="major">
-  <p style="text-align:center;">
-    <img src="https://rotunda.virginia.edu/sites/rotunda.virginia.edu/files/styles/homepage_image/public/1-4-edited.jpg?itok=A9Uo5TYl" width="800px" height="400px" alt="Error loading image">
-  </p>
+    <div class="inner">
+    <p style="padding-top:190px;padding-left:20px">
+      <img src="https://news.virginia.edu/sites/default/files/styles/uva_basic_article/public/article_image/aggro_page_header.jpg?itok=ZbZ5XByJ" width="750px" height="500px" alt="Error loading image">
+    </p>
+  </div>
+  <div class="inner">
     <div style="text-align: center; padding-top:20px">
-      <h1 style="color:blue">
+      <h1>
         Welcome to Student Skill Search!
       </h1>
       <br>
@@ -68,7 +71,7 @@
       </p>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'">Sign In</button>
     </div>
-
+  </div>
   </section>
 {% endif %}
 <p class="test123">

@@ -1,8 +1,11 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
 <html>
 <head>
 <title>{% block title %}{% endblock %}</title>
 {% block extrahead %}{% endblock %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+    
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" style="color:blue"; onclick="location.href='{% url 'home' %}'">Student Skill Search</a>
