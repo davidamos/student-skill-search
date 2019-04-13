@@ -7,6 +7,7 @@ from . import views
 
 
 urlpatterns = [
+	path('', views.HomeView.as_view(), name='front'),
     path('signup/', views.SignUp.as_view(), name='signup'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('profile/add/', views.post_course, name='post_course'),
@@ -16,6 +17,7 @@ urlpatterns = [
     path('courses/majors/<slug:course_code>', views.specified_major, name='specified_major'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
     path('search/', views.SearchView.as_view(), name='search'),
+    path('profile/you', views.UserProfileView.as_view(), name='user_profile'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^messages/', include('postman.urls', namespace='postman')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
