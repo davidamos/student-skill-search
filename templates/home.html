@@ -5,7 +5,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  <h3 > Welcome back, {{ user.username }}! </h3>
+<div class="homeimage">
+  <div class="hometext">
+  <h1> Welcome back, {{ user.username }}! </h1>
+</div>
+</div>
 {% else %}
   <br>
   <h3 style="color:blue; text-align:center; padding-top:70px">Welcome to Student Skill Matching!</h3>

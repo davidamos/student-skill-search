@@ -11,8 +11,9 @@
 </head>
 {% if user.is_authenticated %}
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" style="color:blue"; onclick="location.href='{% url 'home' %}'">Student Skill Search</a>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="color:white"; onclick="location.href='{% url 'home' %}'">Student Skill Search</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -45,9 +46,9 @@
     
   </div>
 </nav>
-<div class="sidenav" style="height: 93%;width: 240px;position: fixed;z-index: 1;bottom: : 0;right: 0;background-color: lightgray;overflow-x: hidden;padding-top: 20px">
+<!--<div class="sidenav" style="height: 93%;width: 240px;position: fixed;z-index: 1;bottom: : 0;right: 0;background-color: lightgray;overflow-x: hidden;padding-top: 20px">
   <a style="color: blue;padding: 6px 8px 6px 16px">Compatible Users</a>
-</div>
+</div>-->
   <main>
     {% block content %}
     {% endblock %}
@@ -74,7 +75,4 @@
   </div>
   </section>
 {% endif %}
-<p class="test123">
-  Hi
-</p>
 </html>
