@@ -10,6 +10,15 @@
   <h1> Welcome back, {{ user.username }}! </h1>
 </div>
 </div>
+  <div class="sidenav" style="height: 93%;width: 240px;position: fixed;z-index: 1;bottom: : 0;right: 0;background-color: lightgray;overflow-x: hidden;padding-top: 20px">
+  	<a style="color: blue;padding: 6px 8px 6px 16px">Compatible Users</a>
+  	{% for user in compat %}
+    	<ul>
+      		<li style="color:blue;"><a href="/accounts/{{ user.id }}/">{{ user.username }}</a></li>
+    	</ul>
+  	{% endfor %}
+  </div>
+  <h3 style="color:blue; text-align:center; padding-top:50px"> Welcome back, {{ user.username }}! </h3>
 {% else %}
   <br>
   <h3 style="color:blue; text-align:center; padding-top:70px">Welcome to Student Skill Matching!</h3>

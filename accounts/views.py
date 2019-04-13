@@ -13,6 +13,7 @@ from django.utils import timezone
 
 import operator
 
+compat = []
 
 class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
@@ -61,13 +62,14 @@ def post_course(request):
 	else:
 		form = CourseForm()
 	return render(request, 'accounts/course_form.html', {'form': form})
-
+	
 
 class ProfileView(TemplateView):
 	template_name = 'accounts/profile.html'
+
 	def get(self, request):
 		form = CustomProfileCreationForm()
-		return render(request, self.template_name, {'form': form})
+		return render(request, self.template_name, {'form': form, 'compat':compat})
 	def post(self, request):
 		form = CustomProfileCreationForm(request.POST)
 		if form.is_valid():
@@ -88,8 +90,33 @@ class ProfileView(TemplateView):
 			request.user.home_address = request.POST['home_address']
 			request.user.qualities = request.POST['qualities']
 			request.user.save()
-			return render(request, 'accounts/user-profile.html', {'customuser':request.user})
-		return render(request, self.template_name, {'form': form, 'text': text})
+			signifier = 0
+			del compat[:]
+			for u in CustomUser.objects.all():
+				for c1 in request.user.courses.all():
+					for c2 in u.courses.all():
+						if c1.course_code == c2.course_code:
+							if u.username == request.user.username:
+								signifier = 1
+								break
+							compat.append(u)
+							signifier = 1
+							break
+					if signifier == 1:
+						signifier = 0
+						break
+			return render(request, 'accounts/user-profile.html', {'customuser':request.user, 'compat':compat})
+		return render(request, self.template_name, {'form': form, 'text': text, 'compat':compat})
+
+class HomeView(TemplateView):
+	template_name = 'home.html'
+	def get(self, request):
+		return render(request, self.template_name, {'compat': compat, 'customuser': request.user})
+
+class UserProfileView(TemplateView):
+	template_name = 'accounts/user-profile.html'
+	def get(self, request):
+		return render(request, self.template_name, {'compat': compat, 'customuser': request.user})
 
 class DetailView(generic.DetailView):
     model = CustomUser
