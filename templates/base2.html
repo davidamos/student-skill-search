@@ -1,10 +1,13 @@
 <!-- templates/base2.html -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
 <!DOCTYPE html>
 <html xmlns:https="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Student Skill Matching{% endblock %}</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+  <!---->
 </head>
 {% if user.is_authenticated %}
 <body>
@@ -51,7 +54,7 @@
   </main>
 </body>
 {% else %}
-  <body>
+  <section id="banner" class="major">
   <p style="text-align:center;">
     <img src="https://rotunda.virginia.edu/sites/rotunda.virginia.edu/files/styles/homepage_image/public/1-4-edited.jpg?itok=A9Uo5TYl" width="800px" height="400px" alt="Error loading image">
   </p>
@@ -66,6 +69,9 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'">Sign In</button>
     </div>
 
-  </body>
+  </section>
 {% endif %}
+<p class="test123">
+  Hi
+</p>
 </html>
