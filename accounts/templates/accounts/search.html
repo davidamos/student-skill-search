@@ -2,6 +2,8 @@
 
 {% block title %}Search{% endblock %}
 {% block content %}
+<div class="searchimage">
+    <div class="hometext">
 {% if search_list %}
     <h4 style="padding-left:15px; padding-top:30px">Matched users: </h4>
     <ul>
@@ -12,4 +14,6 @@
 {% else %}
     <div style="padding-left:15px; padding-top:30px;color:red;font-size:18px;font-weight:bold">No users match your query</div>
 {% endif %}
+    </div>
+</div>
 {% endblock %}
