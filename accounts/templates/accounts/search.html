@@ -3,7 +3,7 @@
 {% block title %}Search{% endblock %}
 {% block content %}
 {% if search_list %}
-    <h4 style="padding-left:15px; padding-top:30px; color:blue">Matched users: </h4>
+    <h4 style="padding-left:15px; padding-top:30px">Matched users: </h4>
     <ul>
     {% for customuser in search_list %}
         <li style="color:orange;"><a href="/accounts/{{ customuser.id }}/">{{ customuser.username }}</a></li>
