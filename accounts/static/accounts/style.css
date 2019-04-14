@@ -3963,9 +3963,9 @@ input, select, textarea {
 
 		.profileimage {
 			background-image: url("https://images.unsplash.com/photo-1554296048-b59c9fca4857?ixlib=rb-1.2.1&auto=format&fit=crop&w=1366&q=80");
-			background-repeat: no-repeat;
+			/* background-repeat: no-repeat; */
 			/* opacity: .2; */
-			background-size:2400px;
+			background-size:1200px;
 			min-height:100%;
 			position: relative;
 			/* height: 100vh; */
