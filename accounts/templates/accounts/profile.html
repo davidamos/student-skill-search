@@ -3,53 +3,56 @@
 
 {% block title %}Profile{% endblock %}
 {% block content %}
-  <h2 style="margin-left:15px">Edit Your Profile</h2>
-<div style="margin-left:15px;">
-  Name: {{ user.username }}
-  <div>
-    <form id="pForm"method="post">
-      {% csrf_token %}
-      {{ form.as_p}}
-      <button type="submit" onclick="thisclick()">Update Profile</button>
-      
-      
+<div class="profileimage">
+  <div class="hometext">
+    <h2 style="margin-left:15px">Edit Your Profile</h2>
+    <div style="margin-left:15px;">
+      Name: {{ user.username }}
+      <div>
+        <form id="pForm" method="post">
+          {% csrf_token %}
+          {{ form.as_p}}
+          <button type="submit" onclick="thisclick()">Update Profile</button>
 
-    </form>
-  </div>
-  <script>function thisclick()
-    {
-        //window.alert(document.getElementById("pForm").innerHTML);
 
-        // Checks if phone is a number
-        phone_val = document.getElementById("id_phone_number").value;
-        var isnum = /^\d+$/.test(phone_val);
-        if (isnum === true & phone_val.length === 10){
+
+        </form>
+      </div>
+      <script>function thisclick() {
+          //window.alert(document.getElementById("pForm").innerHTML);
+
+          // Checks if phone is a number
+          phone_val = document.getElementById("id_phone_number").value;
+          var isnum = /^\d+$/.test(phone_val);
+          if (isnum === true & phone_val.length === 10) {
+          }
+          else {
+            window.alert("Please enter a 10 digit phone number without any special characters");
+          }
+
+          // Checks if email is valid:
         }
-        else{
-          window.alert("Please enter a 10 digit phone number without any special characters");
-        }
-
-        // Checks if email is valid:
-    }
-    </script>
-  </div>
-  <br>
-  {% if user.is_searching %}
+      </script>
+    </div>
+    <br>
+    {% if user.is_searching %}
     <input type="checkbox" name="checkbox" checked> {{user.username}} is searching for a partner<br>
-  {% else %}
+    {% else %}
     <input type="checkbox" name="checkbox"> {{user.username}} is not searching for a partner<br>
-  {% endif %}
-  <br>
-  {% if user.image %}
+    {% endif %}
+    <br>
+    {% if user.image %}
     <img src="{{ user.image.url }}" width="120" alt="Error loading image">
-  {% else %}
+    {% else %}
     <p>No image uploaded</p>
-  {% endif %}
-  <a href="{% url 'post_course' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Add a Course</a> <br>
-  <a href="{% url 'list_majors' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Select Course</a><br>
-  <b>Courses</b>: <br>
-  <hr>
-  {% for course in user.courses.all %}
+    {% endif %}
+    <a href="{% url 'post_course' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Add a Course</a>
+    <br>
+    <a href="{% url 'list_majors' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Select
+      Course</a><br>
+    <b>Courses</b>: <br>
+    <hr>
+    {% for course in user.courses.all %}
     <b>Course Code</b>: {{course.course_code}} <br>
     {% if course.course_is_lecture %}
     <b>Course Type</b>: Lecture <br>
@@ -61,7 +64,7 @@
     <b>Course Days</b>: {{course.course_days}} <br>
     <b>Course Time</b>: {{course.course_start_time}} - {{course.course_end_time}} <br>
     <br>
-  {% endfor %}
-{% endblock %}
+    {% endfor %}
+  </div>
 </div>
-
+{% endblock %}

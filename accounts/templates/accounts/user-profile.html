@@ -2,16 +2,17 @@
 
 {% block title %} Test {%endblock%}
 {% block content %}
-
+<div class="profileimage">
+    <div class="hometext">
 <h2 style="padding-left:15px">{{ customuser.username }}'s profile </h2>
 
-<div style="color:orange;padding-left:15px;">Description: {{ customuser.description }} </div>
-<div style="color:orange;padding-left:15px;">Availability: {{ customuser.availability }} </div>
-<div style="color:orange;padding-left:15px;">Location: {{ customuser.location }} </div>
-<div style="color:orange;padding-left:15px;">Phone Number: {{ customuser.phone_number }} </div>
-<div style="color:orange;padding-left:15px;">Email Address: {{ customuser.profile_email }} </div>
-<div style="color:orange;padding-left:15px;">Home Address: {{ customuser.home_address }} </div>
-<div style="color:orange;padding-left:15px;">Qualities: {{ customuser.qualities }} </div>
+<div style="color:rgb(255, 193, 77);padding-left:15px;">Description: {{ customuser.description }} </div>
+<div style="color:rgb(255, 193, 77);padding-left:15px;">Availability: {{ customuser.availability }} </div>
+<div style="color:rgb(255, 193, 77);padding-left:15px;">Location: {{ customuser.location }} </div>
+<div style="color:rgb(255, 193, 77);padding-left:15px;">Phone Number: {{ customuser.phone_number }} </div>
+<div style="color:rgb(255, 193, 77);padding-left:15px;">Email Address: {{ customuser.profile_email }} </div>
+<div style="color:rgb(255, 193, 77);padding-left:15px;">Home Address: {{ customuser.home_address }} </div>
+<div style="color:rgb(255, 193, 77);padding-left:15px;">Qualities: {{ customuser.qualities }} </div>
 <br>
 <b style="padding-left:15px;">Courses</b>:
 <br>
@@ -32,5 +33,7 @@
     Like what you see? <span><a href="/accounts/messages/write/?recipients={{ customuser.username}}" style="padding-left:15px">Message {{ customuser.username}}!</a></span>
   </div>
 {% endif %}
+</div>
+</div>
 
 {% endblock %}

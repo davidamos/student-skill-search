@@ -5,8 +5,9 @@
 <head>
 <title>{% block title %}{% endblock %}</title>
 {% block extrahead %}{% endblock %}
-    
+
 </head>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" style="color:white"; onclick="location.href='{% url 'home' %}'">Student Skill Search</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,9 +22,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       {% if user.is_authenticated %}
-      <li class="nav-item active">
-        <a class="nav-link" onclick="location.href='{% url 'profile' %}'">Edit Profile</a>
-      </li>
+      <li class="nav-item active" style="cursor:pointer">
+          <a class="nav-link" onclick="location.href='{% url 'profile' %}'">Edit Profile</a>
+        </li>
+        <li class="nav-item active" style="cursor:pointer">
+          <a class="nav-link" onclick="location.href='{% url 'user_profile' %}'">Your Profile</a>
+        </li>
       <li class="nav-item active">
         <a class="nav-link" href="/accounts/messages/">Messages</a>
       </li>
@@ -42,8 +46,12 @@
   </div>
 </nav>
 
+<div class="searchimage">
+    <div class="hometext">
 <div style="padding-left:15px; padding-top:15px">
 {% block postman_menu %}{% endblock %}
 {% block content %}{% endblock %}
+</div>
+</div>
 </div>
 </html>
