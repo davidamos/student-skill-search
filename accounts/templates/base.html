@@ -22,9 +22,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       {% if user.is_authenticated %}
-      <li class="nav-item active">
-        <a class="nav-link" onclick="location.href='{% url 'profile' %}'">Edit Profile</a>
-      </li>
+      <li class="nav-item active" style="cursor:pointer">
+          <a class="nav-link" onclick="location.href='{% url 'profile' %}'">Edit Profile</a>
+        </li>
+        <li class="nav-item active" style="cursor:pointer">
+          <a class="nav-link" onclick="location.href='{% url 'user_profile' %}'">Your Profile</a>
+        </li>
       <li class="nav-item active">
         <a class="nav-link" href="/accounts/messages/">Messages</a>
       </li>
