@@ -3960,3 +3960,23 @@ input, select, textarea {
 			color: white;
 			position: relative;
 		}
+
+		.profileimage {
+			background-image: url("https://images.unsplash.com/photo-1554296048-b59c9fca4857?ixlib=rb-1.2.1&auto=format&fit=crop&w=1366&q=80");
+			background-repeat: no-repeat;
+			/* opacity: .2; */
+			background-size:2400px;
+			min-height:100%;
+			position: relative;
+			/* height: 100vh; */
+			overflow-y: hidden;
+		}
+		.profileimage:before {
+			content:'';
+			position: absolute;
+			top:0;
+			right:0;
+			left:0;
+			bottom:0;
+			background: rgba(27,31,34,.8);
+		}

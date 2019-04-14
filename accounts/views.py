@@ -68,7 +68,7 @@ class ProfileView(TemplateView):
 	template_name = 'accounts/profile.html'
 
 	def get(self, request):
-		form = CustomProfileCreationForm()
+		form = CustomProfileCreationForm(initial={'description': request.user.description, 'availability': request.user.availability, 'location': request.user.location, 'phone_number': request.user.phone_number, 'profile_email': request.user.profile_email, 'home_address': request.user.home_address, 'qualities':request.user.qualities})
 		return render(request, self.template_name, {'form': form, 'compat':compat})
 	def post(self, request):
 		form = CustomProfileCreationForm(request.POST)
