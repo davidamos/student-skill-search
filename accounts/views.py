@@ -35,8 +35,7 @@ def list_majors(request):
 
 
 def specified_major(request, course_code):
-	print(course_code)
-	results = Class.objects.filter(course_code__contains=course_code)
+	results = Class.objects.filter(course_code__contains=course_code).order_by('course_code')
 	return render(request, 'accounts/all_courses.html', {'results':results})
 
 	
