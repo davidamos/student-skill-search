@@ -9,6 +9,11 @@
     <ul>
     {% for customuser in search_list %}
         <li style="color:orange;"><a href="/accounts/{{ customuser.id }}/">{{ customuser.username }}</a></li>
+ 		<p>{{ customuser.description }}</p>
+ 		<i>Courses:</i>
+ 		{% for course in customuser.courses.all %}
+ 			<i>{{ course.course_code }}</i>
+ 		{% endfor %}
     {% endfor %}
     </ul>
 {% else %}
