@@ -130,6 +130,7 @@ class SearchView(generic.ListView):
 	def get_queryset(self):
 		result = CustomUser.objects.order_by('username')
 		query = self.request.GET.get('searchterm')
+		query = query.replace(" ","")
 		resultslist = []
 		if query:
 			query_list = query.split()
@@ -139,7 +140,9 @@ class SearchView(generic.ListView):
 						resultslist.append(u)
 					else:
 						for course in u.courses.all():
-							if query.lower() in course.course_code.lower():
+							c = course.course_code
+							c = c.replace(" ", "")
+							if query.lower() in c.lower():
 								resultslist.append(u)
 								break
 			#result = result.filter(username=query) or result.filter(description=query)
