@@ -12,9 +12,9 @@
       {% for user in compat %}
         <ul>
             <li style="color:orange;"><a href="/accounts/{{ user.id }}/">{{ user.username }}</a></li>
-            <p>{{ customuser.description }}</p>
+            <p>{{ user.description }}</p>
  		    <i>Courses:</i>
- 		    {% for course in customuser.courses.all %}
+ 		    {% for course in user.courses.all %}
  			  <i>{{ course.course_code }}</i>
  		    {% endfor %}
         </ul>
