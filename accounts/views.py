@@ -96,20 +96,21 @@ class HomeView(TemplateView):
 	template_name = 'home.html'
 	def get(self, request):
 		compat = []
-		signifier = 0
-		for u in CustomUser.objects.all():
-			for c1 in request.user.courses.all():
-				for c2 in u.courses.all():
-					if c1.course_code == c2.course_code:
-						if u.username == request.user.username:
+		if request.user.is_authenticated:
+			signifier = 0
+			for u in CustomUser.objects.all():
+				for c1 in request.user.courses.all():
+					for c2 in u.courses.all():
+						if c1.course_code == c2.course_code:
+							if u.username == request.user.username:
+								signifier = 1
+								break
+							compat.append(u)
 							signifier = 1
 							break
-						compat.append(u)
-						signifier = 1
+					if signifier == 1:
+						signifier = 0
 						break
-				if signifier == 1:
-					signifier = 0
-					break
 		return render(request, self.template_name, {'compat': compat, 'customuser': request.user})
 
 class UserProfileView(TemplateView):
