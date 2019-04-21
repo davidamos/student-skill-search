@@ -6,16 +6,30 @@
     <div class="hometext">
 {% if search_list %}
     <h4 style="padding-left:15px; padding-top:30px">Matched users: </h4>
-    <ul>
+    <table>
+        <col width="130">
+        <col width="80">
+        <tr>
+            <th style="color:orange;">Name</th>
+            <th style="color:orange;">Description</th>
+            <th style="color:orange;">Courses</th>
+        </tr>
     {% for customuser in search_list %}
-        <li style="color:orange;"><a href="/accounts/{{ customuser.id }}/">{{ customuser.username }}</a></li>
- 		<p>{{ customuser.description }}</p>
- 		<i>Courses:</i>
- 		{% for course in customuser.courses.all %}
- 			<i>{{ course.course_code }}</i>
- 		{% endfor %}
+        <tr>
+            <th><a href="/accounts/{{ customuser.id }}/">{{ customuser.name }} {{ customuser.username }} </a></th>
+            {% if customuser.description != "" %}
+                <th> {{ customuser.description }} </th>
+            {% else %}
+                <th>No description uploaded</th>
+            {% endif %}
+            <th>
+            {% for course in customuser.courses.all %}
+                {{ course.course_code }}
+            {% endfor %}
+            </th>
+        </tr>
     {% endfor %}
-    </ul>
+    </table>
 {% else %}
     <div style="padding-left:15px; padding-top:30px;color:red;font-size:18px;font-weight:bold">No users match your query</div>
 {% endif %}

@@ -67,12 +67,13 @@ class ProfileView(TemplateView):
 	template_name = 'accounts/profile.html'
 
 	def get(self, request):
-		form = CustomProfileCreationForm(initial={'description': request.user.description, 'availability': request.user.availability, 'location': request.user.location, 'phone_number': request.user.phone_number, 'profile_email': request.user.profile_email, 'home_address': request.user.home_address, 'qualities':request.user.qualities})
+		form = CustomProfileCreationForm(initial={'name': request.user.name, 'description': request.user.description, 'availability': request.user.availability, 'location': request.user.location, 'phone_number': request.user.phone_number, 'profile_email': request.user.profile_email, 'home_address': request.user.home_address, 'qualities':request.user.qualities})
 		return render(request, self.template_name, {'form': form})
 	def post(self, request):
 		form = CustomProfileCreationForm(request.POST)
 		if form.is_valid():
 			form.save(commit=False)
+			request.user.name = request.POST['name']
 			request.user.description = request.POST['description']
 			request.user.availability = request.POST['availability']
 			request.user.location = request.POST['location']
