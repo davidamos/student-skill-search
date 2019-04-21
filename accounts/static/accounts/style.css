@@ -55,6 +55,14 @@ table {
 	border-spacing: 0;
 }
 
+table.searchRes tr:nth-child(odd) {
+	color: orange;
+}
+
+table.searchRes tr:nth-child(even) {
+	color: blue;
+}
+
 body {
 	-webkit-text-size-adjust: none;
 }
@@ -4000,4 +4008,3 @@ input, select, textarea {
 			bottom:0;
 			background: rgba(27,31,34,.8);
 		}
-		
