@@ -10,10 +10,11 @@
       Name: {{ user.username }}
       <div>
         <form id="pForm" method="post">
-          {% csrf_token %}
-          {{ form.as_p}}
+          <table>
+            {% csrf_token %}
+            {{ form.as_table}}
+          </table>
           <button type="submit" onclick="thisclick()">Update Profile</button>
-
 
 
         </form>
