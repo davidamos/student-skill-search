@@ -5,7 +5,13 @@
 <div class="profileimage">
     <div class="hometext">
 <h2 style="padding-left:15px">{{ customuser.username }}'s profile </h2>
-
+{% if user.username != customuser.username %}
+  <div style="padding-left:15px; font-weight: bold">
+    Like what you see? <span><a href="/accounts/messages/write/?recipients={{ customuser.username}}" style="padding-left:15px">Message {{ customuser.username}}!</a></span>
+  </div>
+{% endif %}
+<br>
+      
 <div style="color:rgb(255, 193, 77);padding-left:15px;">Description: {{ customuser.description }} </div>
 <div style="color:rgb(255, 193, 77);padding-left:15px;">Availability: {{ customuser.availability }} </div>
 <div style="color:rgb(255, 193, 77);padding-left:15px;">Location: {{ customuser.location }} </div>
@@ -28,11 +34,6 @@
 </div>
 
 <br>
-{% if user.username != customuser.username %}
-  <div style="padding-left:15px">
-    Like what you see? <span><a href="/accounts/messages/write/?recipients={{ customuser.username}}" style="padding-left:15px">Message {{ customuser.username}}!</a></span>
-  </div>
-{% endif %}
 </div>
 </div>
 
