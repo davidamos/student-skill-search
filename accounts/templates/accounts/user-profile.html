@@ -1,6 +1,6 @@
 {% extends 'base2.html' %}
 
-{% block title %} Test {%endblock%}
+{% block title %} {{customuser.username}}'s profile {%endblock%}
 {% block content %}
 <div class="profileimage">
     <div class="hometext">
@@ -11,7 +11,7 @@
   </div>
 {% endif %}
 <br>
-      
+
 <div style="color:rgb(255, 193, 77);padding-left:15px;">Description: {{ customuser.description }} </div>
 <div style="color:rgb(255, 193, 77);padding-left:15px;">Availability: {{ customuser.availability }} </div>
 <div style="color:rgb(255, 193, 77);padding-left:15px;">Location: {{ customuser.location }} </div>
