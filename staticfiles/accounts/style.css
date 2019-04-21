@@ -55,6 +55,14 @@ table {
 	border-spacing: 0;
 }
 
+table.searchRes tr:nth-child(odd) {
+	color: orange;
+}
+
+table.searchRes tr:nth-child(even) {
+	color: blue;
+}
+
 body {
 	-webkit-text-size-adjust: none;
 }
