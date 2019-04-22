@@ -26,7 +26,7 @@
             {% endif %}
             <th>
             {% for course in customuser.courses.all %}
-                {{ course.course_code }}
+                <a href="/accounts/search/?searchterm={{course.course_code}}"> {{ course.course_code }} </a>
             {% endfor %}
             </th>
         </tr>
