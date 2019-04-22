@@ -9,7 +9,31 @@
   <div class="hometext">
   <h1> Welcome back, {{ user.username }}! </h1>
       <h3 >Students in Your Courses:</h3>
-      {% for user in compat %}
+      <table class="searchRes">
+          <col width="130">
+          <col width="80">
+          <tr>
+              <th style="color:orange;">Name</th>
+              <th style="color:orange;">Description</th>
+              <th style="color:orange;">Courses</th>
+          </tr>
+      {% for customuser in compat %}
+          <tr>
+              <th><a href="/accounts/{{ customuser.id }}/">{{ customuser.name }} {{ customuser.username }} </a></th>
+              {% if customuser.description != "" %}
+                  <th> {{ customuser.description }} </th>
+              {% else %}
+                  <th>No description uploaded</th>
+              {% endif %}
+              <th>
+              {% for course in customuser.courses.all %}
+                  {{ course.course_code }}
+              {% endfor %}
+              </th>
+          </tr>
+      {% endfor %}
+      </table>
+      <!-- {% for user in compat %}
         <ul>
             <li style="color:orange;"><a href="/accounts/{{ user.id }}/">{{ user.username }}</a></li>
             <p>{{ user.description }}</p>
@@ -18,7 +42,7 @@
  			  <i>{{ course.course_code }}</i>
  		    {% endfor %}
         </ul>
-      {% endfor %}
+      {% endfor %} -->
     </div>
 </div>
 
