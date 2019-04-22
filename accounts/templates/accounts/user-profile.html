@@ -23,16 +23,24 @@
 <br>
 <b style="padding-left:15px;">Courses</b>:
 <br>
-<div style="padding-left:15px;">
-  {% for course in customuser.courses.all %}
-    Course Code: {{course.course_code}} <br>
-    Course Professor: {{course.course_professor}} <br>
-    Course Location: {{course.course_location}} <br>
-    Course Days: {{course.course_days}} <br>
-    Course Time: {{course.course_start_time}} - {{course.course_end_time}} <br>
-    <br>
-{% endfor %}
-</div>
+<table style="width:100%">
+	<tr>
+		<th>Course Code</th>
+		<th>Professor</th>
+		<th>Location</th>
+		<th>Days</th>
+		<th>Time</th>
+	</tr>
+  	{% for course in customuser.courses.all %}
+	  <tr>
+	    <td>{{course.course_code}}</td>
+	    <td>{{course.course_professor}}</td> 
+	    <td>{{course.course_location}}</td>
+	    <td>{{course.course_days}}</td>
+	    <td>{{course.course_start_time}} - {{course.course_end_time}}</td>
+	  </tr>
+	{% endfor %}
+</table>
 
 <br>
 </div>
