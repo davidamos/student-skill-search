@@ -23,9 +23,10 @@
 <br>
 <b style="padding-left:15px;">Courses</b>:
 <br>
-<table style="width:100%">
+<table style="width:100%; padding-left:15px">
 	<tr>
 		<th>Course Code</th>
+		<th>Course Type</th>
 		<th>Professor</th>
 		<th>Location</th>
 		<th>Days</th>
@@ -34,6 +35,11 @@
   	{% for course in customuser.courses.all %}
 	  <tr>
 	    <td>{{course.course_code}}</td>
+	    {% if course.course_is_lecture %}
+        <td>Lecture</td>
+        {% else %}
+        <td>Discussion</td>
+        {% endif %}
 	    <td>{{course.course_professor}}</td> 
 	    <td>{{course.course_location}}</td>
 	    <td>{{course.course_days}}</td>
