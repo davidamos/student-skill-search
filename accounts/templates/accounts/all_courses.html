@@ -5,7 +5,7 @@
 <form action="{% url 'add_course' %}" method="post">
     {% csrf_token %}
     <table>
-        <tr bgcolor="#FFFF33">
+        <tr>
             <th>Select Course</th>
             <th>Course Code</th>
             <th>Course Section</th>
@@ -18,7 +18,7 @@
         </tr>
         {% for item in results %}
         {% if item.course_is_lecture %}
-        <tr bgcolor="#98FB98">
+        <tr>
             <td>
                  <div class="checkbox">
                      <label><input type="checkbox" id='course{{ forloop.counter }}' name="course" value="{{ item.id }}"></label>
@@ -34,7 +34,7 @@
             <td>{{ item.course_end_time }}</td>
         </tr>
         {% else %}
-        <tr bgcolor="#add8e6"> 
+        <tr> 
             <td>
                  <div class="checkbox">
                      <label><input type="checkbox" id='course{{ forloop.counter }}' name="course" value="{{ item.id }}"></label>
