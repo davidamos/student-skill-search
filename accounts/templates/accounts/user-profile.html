@@ -4,7 +4,7 @@
 {% block content %}
 <div class="profileimage">
     <div class="hometext">
-<h2 style="padding-left:15px">{{ customuser.username }}'s profile </h2>
+<h2 style="padding-left:15px">{{ customuser.name }}'s profile </h2>
 {% if user.username != customuser.username %}
   <div style="padding-left:15px; font-weight: bold">
     Like what you see? <span><a href="/accounts/messages/write/?recipients={{ customuser.username}}" style="padding-left:15px">Message {{ customuser.username}}!</a></span>
@@ -12,7 +12,7 @@
 {% endif %}
 <br>
 
-<table style="border:ridge 5px black; background-color:darkblue; color:#FFF">
+<table style="border:ridge 4px black; background-color:rgba(0,0,139, 0.25); color:#FFF;">
   <col width="200">
   <tr>
     <th>Name:</th>
