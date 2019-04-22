@@ -55,12 +55,16 @@ table {
 	border-spacing: 0;
 }
 
-table.searchRes tr:nth-child(odd) {
+/* table.searchRes tr:nth-child(odd) {
 	color: orange;
 }
 
 table.searchRes tr:nth-child(even) {
 	color: blue;
+} */
+
+table.searchRes tbody tr:nth-child(2n + 1) {
+	background-color: rgba(243, 243, 243, 0.2);
 }
 
 body {
@@ -2441,7 +2445,7 @@ input, select, textarea {
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(212, 212, 255, 0.035);
+				background-color: rgba(243, 243, 243, 0.2);
 			}
 
 		table td {
