@@ -15,6 +15,7 @@ class CustomProfileCreationForm(forms.ModelForm):
     class Meta(forms.ModelForm):
         model = CustomUser
         fields = ('name', 'description', 'availability', 'location', 'phone_number', 'profile_email', 'home_address', 'qualities')
+        is_searching = forms.BooleanField(required=False, label='Is searching:')
         
 class CustomUserChangeForm(UserChangeForm):
 
