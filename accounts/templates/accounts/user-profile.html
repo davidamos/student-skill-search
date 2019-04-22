@@ -4,7 +4,7 @@
 {% block content %}
 <div class="profileimage">
     <div class="hometext">
-<h2 style="padding-left:15px">{{ customuser.username }}'s profile </h2>
+<h2 style="padding-left:15px">{{ customuser.name }}'s profile </h2>
 {% if user.username != customuser.username %}
   <div style="padding-left:15px; font-weight: bold">
     Like what you see? <span><a href="/accounts/messages/write/?recipients={{ customuser.username}}" style="padding-left:15px">Message {{ customuser.username}}!</a></span>
@@ -12,27 +12,68 @@
 {% endif %}
 <br>
 
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Name: {{ customuser.name}} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Description: {{ customuser.description }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Availability: {{ customuser.availability }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Location: {{ customuser.location }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Phone Number: {{ customuser.phone_number }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Email Address: {{ customuser.profile_email }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Home Address: {{ customuser.home_address }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Qualities: {{ customuser.qualities }} </div>
+<table style="border:ridge 4px black; background-color:rgba(0,0,139, 0.25); color:#FFF;">
+  <col width="200">
+  <tr>
+    <th>Name:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.name}}</td>
+  </tr>
+  <tr>
+    <th>Description:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.description}}</td>
+  </tr>
+  <tr>
+    <th>Times Available:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.availability}}</td>
+  </tr>
+  <tr>
+    <th>Preferred Study Locations:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.location}}</td>
+  </tr>
+  <tr>
+    <th>Phone Number:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.phone_number}}</td>
+  </tr>
+  <tr>
+    <th>Email:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.profile_email}}</td>
+  </tr>
+  <tr>
+    <th>Home Address:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.home_address}}</td>
+  </tr>
+  <tr>
+    <th>Qualities:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.qualities}}</td>
+  </tr>
+</table>
 <br>
 <b style="padding-left:15px;">Courses</b>:
 <br>
-<div style="padding-left:15px;">
-  {% for course in customuser.courses.all %}
-    Course Code: {{course.course_code}} <br>
-    Course Professor: {{course.course_professor}} <br>
-    Course Location: {{course.course_location}} <br>
-    Course Days: {{course.course_days}} <br>
-    Course Time: {{course.course_start_time}} - {{course.course_end_time}} <br>
-    <br>
-{% endfor %}
-</div>
+<table style="width:100%; padding-left:15px">
+	<tr>
+		<th>Course Code</th>
+		<th>Course Type</th>
+		<th>Professor</th>
+		<th>Location</th>
+		<th>Days</th>
+		<th>Time</th>
+	</tr>
+  	{% for course in customuser.courses.all %}
+	  <tr>
+	    <td>{{course.course_code}}</td>
+	    {% if course.course_is_lecture %}
+        <td>Lecture</td>
+        {% else %}
+        <td>Discussion</td>
+        {% endif %}
+	    <td>{{course.course_professor}}</td> 
+	    <td>{{course.course_location}}</td>
+	    <td>{{course.course_days}}</td>
+	    <td>{{course.course_start_time}} - {{course.course_end_time}}</td>
+	  </tr>
+	{% endfor %}
+</table>
 
 <br>
 </div>

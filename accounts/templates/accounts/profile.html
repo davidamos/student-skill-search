@@ -22,11 +22,11 @@
               <th style="padding-top:5;padding-bottom:5">{{form.description}}</th>
             </tr>
             <tr>
-              <th>Availability:</th>
+              <th>Times Available:</th>
               <th style="padding-top:5;padding-bottom:5">{{form.availability}}</th>
             </tr>
             <tr>
-              <th>Location:</th>
+              <th>Preferred Study Locations:</th>
               <th style="padding-top:5;padding-bottom:5">{{form.location}}</th>
             </tr>
             <tr>
@@ -94,19 +94,31 @@
     <!-- <b>Courses</b>: <br> -->
     <!-- <hr> -->
     <br>
-    {% for course in user.courses.all %}
-    <b>Course Code</b>: {{course.course_code}} <br>
-    {% if course.course_is_lecture %}
-    <b>Course Type</b>: Lecture <br>
-    {% else %}
-    <b>Course Type</b>: Discussion <br>
-    {% endif %}
-    <b>Course Professor</b>: {{course.course_professor}} <br>
-    <b>Course Location</b>: {{course.course_location}} <br>
-    <b>Course Days</b>: {{course.course_days}} <br>
-    <b>Course Time</b>: {{course.course_start_time}} - {{course.course_end_time}} <br>
-    <br>
-    {% endfor %}
+    <p></p>
+    <table style="width:100%; padding-left:15px; padding-top: 15px">
+      <tr>
+        <th>Course Code</th>
+        <th>Course Type</th>
+        <th>Professor</th>
+        <th>Location</th>
+        <th>Days</th>
+        <th>Time</th>
+      </tr>
+      {% for course in user.courses.all %}
+        <tr>
+          <td>{{course.course_code}}</td>
+          {% if course.course_is_lecture %}
+          <td>Lecture</td>
+          {% else %}
+          <td>Discussion</td>
+          {% endif %}
+          <td>{{course.course_professor}}</td> 
+          <td>{{course.course_location}}</td>
+          <td>{{course.course_days}}</td>
+          <td>{{course.course_start_time}} - {{course.course_end_time}}</td>
+        </tr>
+      {% endfor %}
+    </table>
   </div>
   </div>
 </div>
