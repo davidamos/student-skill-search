@@ -1929,8 +1929,8 @@ input, select, textarea {
 		-ms-appearance: none;
 		appearance: none;
 		background: rgba(212, 212, 255, 0.035);
-		border: none;
-		border-radius: 0;
+		border: 2px solid rgba(255, 255, 255, 0.2);
+		border-radius: 1px;
 		color: inherit;
 		display: block;
 		outline: 0;
@@ -1938,6 +1938,9 @@ input, select, textarea {
 		text-decoration: none;
 		width: 100%;
 	}
+	/* input[type="text"]#editprof {
+		border: 2px rgba(255, 255, 255, 0.3);
+	} */
 
 		input[type="text"]:invalid,
 		input[type="password"]:invalid,

@@ -15,43 +15,43 @@
             <!-- {{ form.as_table}} -->
             <tr>
               <th>Name:</th>
-              <th>{{form.name}}</th>
+              <th style="padding-top:5;padding-bottom:5">{{form.name}}</th>
             </tr>
             <tr>
               <th>Description:</th>
-              <th>{{form.description}}</th>
+              <th style="padding-top:5;padding-bottom:5">{{form.description}}</th>
             </tr>
             <tr>
               <th>Availability:</th>
-              <th>{{form.availability}}</th>
+              <th style="padding-top:5;padding-bottom:5">{{form.availability}}</th>
             </tr>
             <tr>
               <th>Location:</th>
-              <th>{{form.location}}</th>
+              <th style="padding-top:5;padding-bottom:5">{{form.location}}</th>
             </tr>
             <tr>
               <th>Phone Number:</th>
-              <th>{{form.phone_number}}</th>
+              <th style="padding-top:5;padding-bottom:5">{{form.phone_number}}</th>
             </tr>
             <tr>
               <th>Email:</th>
-              <th>{{form.profile_email}}</th>
+              <th style="padding-top:5;padding-bottom:5">{{form.profile_email}}</th>
             </tr>
             <tr>
               <th>Home Address:</th>
-              <th>{{form.home_address}}</th>
+              <th style="padding-top:5;padding-bottom:5">{{form.home_address}}</th>
             </tr>
             <tr>
               <th>Qualities:</th>
-              <th>{{form.qualities}}</th>
+              <th style="padding-top:5;padding-bottom:5">{{form.qualities}}</th>
             </tr>
           </table>
 
-          {% if user.is_searching %}
+          <!-- {% if user.is_searching %}
     <input type="checkbox" name="checkbox" checked> {{user.username}} is searching for a partner<br>
     {% else %}
     <input type="checkbox" name="checkbox"> {{user.username}} is not searching for a partner<br>
-    {% endif %}
+    {% endif %} -->
 
           <button type="submit" onclick="thisclick()">Update Profile</button>
         </form>
@@ -72,7 +72,6 @@
         }
       </script>
     </div>
-    <br>
     <div style="margin-left:15px">
     <!-- {% if user.is_searching %}
     <input type="checkbox" name="checkbox" checked> {{user.username}} is searching for a partner<br>
@@ -89,14 +88,12 @@
     </style>
     <!-- <button type="submit" formaction="{% url 'post_course' %}">Add a course</button>
     <button type="submit" formaction="{% url 'list_majors' %}">Select a course</button> -->
+    <h3>Courses:</h3>
     <a href="{% url 'post_course' %}" class="button"><span class="glyphicon glyphicon-plus"></span>Add a Course</a>
-    <a href="{% url 'list_majors' %}" class="button"><span class="glyphicon glyphicon-plus"></span>Select
-      Course</a>
-    </div>
-    <div style="margin-left:15px">
+    <a href="{% url 'list_majors' %}" class="button"><span class="glyphicon glyphicon-plus"></span>Select a Course</a>
+    <!-- <b>Courses</b>: <br> -->
+    <!-- <hr> -->
     <br>
-    <b>Courses</b>: <br>
-    <hr>
     {% for course in user.courses.all %}
     <b>Course Code</b>: {{course.course_code}} <br>
     {% if course.course_is_lecture %}
