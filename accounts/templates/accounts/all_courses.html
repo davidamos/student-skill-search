@@ -20,9 +20,11 @@
         {% if item.course_is_lecture %}
         <tr>
             <td>
-                <div class="checkbox">
-                    <label><input type="checkbox" id='course{{ forloop.counter }}' name="course" value="{{ item.id }}"></label>
-                </div>
+                <!-- <div class="checkbox"> -->
+                    <!-- <label> -->
+                        <input type="checkbox" id='course{{ forloop.counter }}' name="course" value="{{ item.id }}">
+                    <!-- </label> -->
+                <!-- </div> -->
             </td>
             <td>{{ item.course_code }}</td>
             <td>{{ item.course_section }}</td>
