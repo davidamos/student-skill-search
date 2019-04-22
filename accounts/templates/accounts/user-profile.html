@@ -12,14 +12,41 @@
 {% endif %}
 <br>
 
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Name: {{ customuser.name}} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Description: {{ customuser.description }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Availability: {{ customuser.availability }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Location: {{ customuser.location }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Phone Number: {{ customuser.phone_number }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Email Address: {{ customuser.profile_email }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Home Address: {{ customuser.home_address }} </div>
-<div style="color:rgb(255, 193, 77);padding-left:15px;">Qualities: {{ customuser.qualities }} </div>
+<table style="border:ridge 5px black; background-color:darkblue; color:#FFF">
+  <col width="200">
+  <tr>
+    <th>Name:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.name}}</td>
+  </tr>
+  <tr>
+    <th>Description:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.description}}</td>
+  </tr>
+  <tr>
+    <th>Times Available:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.availability}}</td>
+  </tr>
+  <tr>
+    <th>Preferred Study Locations:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.location}}</td>
+  </tr>
+  <tr>
+    <th>Phone Number:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.phone_number}}</td>
+  </tr>
+  <tr>
+    <th>Email:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.profile_email}}</td>
+  </tr>
+  <tr>
+    <th>Home Address:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.home_address}}</td>
+  </tr>
+  <tr>
+    <th>Qualities:</th>
+    <td style="padding-top:5;padding-bottom:5">{{customuser.qualities}}</td>
+  </tr>
+</table>
 <br>
 <b style="padding-left:15px;">Courses</b>:
 <br>
