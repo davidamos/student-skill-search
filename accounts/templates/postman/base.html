@@ -49,10 +49,10 @@
 " />{% endblock %}
 {% block postman_menu %}
 <div id="postman_menu">{% postman_unread as unread_count %}
-<button><a href="{% url 'postman:inbox' %}">{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></button>
- <button><a href="{% url 'postman:sent' %}">{% trans "Sent Messages" %}</a></button>
- <button><a href="{% url 'postman:write' %}">{% trans "Write Message" %}</a></button>
-<button><a href="{% url 'postman:archives' %}">{% trans "Archives" %}</a></button>
-<button><a href="{% url 'postman:trash' %}">{% trans "Trash" %}</a></button>
+<button onclick="location.href='{% url 'postman:inbox' %}'">{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</button>
+<button onclick="location.href='{% url 'postman:sent' %}'">{% trans "Sent Messages" %}</button>
+<button onclick="location.href='{% url 'postman:write' %}'">{% trans "Write Message" %}</button>
+<button onclick="location.href='{% url 'postman:archives' %}'">{% trans "Archives" %}</button>
+<button onclick="location.href='{% url 'postman:trash' %}'">{% trans "Trash" %}</button>
 </div>
 {% endblock %}
