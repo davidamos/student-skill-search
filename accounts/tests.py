@@ -99,9 +99,44 @@ class CustomUserModelTests(TestCase):
     #     student = CustomUser()
     #     self.assertEqual("", student.courses)
 
-    # Student indicates that they are in CS 3240
+    # CS3240 is created - validate course code
     def test_has_class(self):
-        student = CustomUser()
         course = Class
         course.course_code = "CS 3240"
         self.assertEqual("CS 3240", course.course_code)
+
+    # CS3240 is created - validate professor
+    def test_has_class(self):
+        course = Class
+        course.course_professor = "Mark Sherriff"
+        self.assertEqual("Mark Sherriff", course.course_professor)
+
+    # CS3240 is created - validate location
+    def test_has_class(self):
+        course = Class
+        course.course_location = "Wilson 301"
+        self.assertEqual("Wilson 301", course.course_code)
+
+    # CS3240 is created - validate if lecture
+    def test_has_class(self):
+        course = Class
+        course.course_is_lecture = True
+        self.assertTrue(course.course_is_lecture)
+
+    # CS3240 is created - validate days
+    def test_has_class(self):
+        course = Class
+        course.course_days = "TuTh"
+        self.assertEqual("TuTh", course.course_days)
+
+    # CS3240 is created - validate start time
+    def test_has_class(self):
+        course = Class
+        course.course_start_time = "11 a.m."
+        self.assertEqual("11 a.m.", course.course_start_time)
+
+    # CS3240 is created - validate end time
+    def test_has_class(self):
+        course = Class
+        course.course_end_time = "12:15 p.m."
+        self.assertEqual("12:15 p.m.", course.course_end_time)
