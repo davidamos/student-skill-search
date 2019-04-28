@@ -132,7 +132,7 @@ class SearchView(generic.ListView):
 		result = CustomUser.objects.order_by('username')
 		query = self.request.GET.get('searchterm')
 		query = query.replace(" ","")
-		resultslist = []
+		resultslist = [query]
 		if query:
 			query_list = query.split()
 			for u in result:

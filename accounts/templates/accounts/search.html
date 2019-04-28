@@ -6,7 +6,15 @@
 <div class="searchimage">
     <div class="hometext">
 {% if search_list %}
-
+<script>
+    var term = '{{search_list}}';
+    console.log(term);
+</script>
+    <div style="padding-left:15px;">
+        {% for customuser in search_list|slice:":1"%}
+        You searched for: {{customuser}}
+    </div>
+    {%endfor%}
     <h4 style="padding-left:15px; padding-top:30px">Matched users: </h4>
     <table class="searchRes">
         <col width="130">
