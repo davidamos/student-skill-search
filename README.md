@@ -3,6 +3,8 @@
 
 cs3240 Project - Building a web application for finding study partners/groups at UVA.
 
+The app can be found here: https://thawing-shore-56797.herokuapp.com/
+
 ### Home Page
 Here you can see the list of users who are in the same classes as you. Clicking on any of the students' names will bring you to their profile page.
 On this and all other pages on the website, you can use the nav-bar at the top of the screen to navigate to any of the other pages. Clicking on the title in the top-left corner of the screen will bring you to the home page.
